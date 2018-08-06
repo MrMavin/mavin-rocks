@@ -12,7 +12,7 @@
 @endpush
 
 @section('content')
-    <section class="hero welcome is-halfheight sr-c" style="background-image: url('{{ mix('images/lead.jpg') }}')">
+    <section class="hero welcome is-halfheight sr-c" style="background: no-repeat left top; background-image: url('{{ mix('images/lead.jpg') }}'); background-size: cover;">
         <div class="hero-body">
             <div class="container">
                 <h1 class="is-uppercase">
