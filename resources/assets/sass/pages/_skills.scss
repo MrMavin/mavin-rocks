@@ -1,0 +1,107 @@
+.skills {
+  strong{
+    color: $white;
+  }
+
+  ul {
+    margin-left: 0;
+    > li > ul {
+      margin-left: 1rem;
+    }
+  }
+
+  .background {
+    height: 100%;
+    background: linear-gradient(90deg, $grey-dark 50%, $black-bis 50%);
+  }
+
+  @include mobile{
+    .media{
+      flex-direction: column;
+      .media-left{
+        margin: 0 auto 1rem auto;
+      }
+      .media-content{
+        width: 100% !important;
+        text-align: center;
+      }
+    }
+  }
+
+  .card {
+    background-color: inherit;
+    box-shadow: none;
+    p.title{
+      @include desktop{
+        font-size: 1.50rem;
+      }
+      @include widescreen{
+        font-size: 2rem;
+      }
+      @include fullhd{
+        font-size: 1.75rem;
+      }
+    }
+  }
+
+  .section {
+    margin-top: 0;
+    hr {
+      margin: 0;
+    }
+    h1 {
+      margin-bottom: 0.5rem;
+      text-align: left;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    h2 {
+      margin-left: 0;
+      margin-bottom: 2rem;
+      width: 100%;
+      text-align: left;
+      font-size: 1rem;
+    }
+  }
+
+  .backend {
+    background-color: $grey-dark;
+    .title, i, h1 {
+      color: $red;
+    }
+    hr {
+      background-color: $red;
+    }
+  }
+
+  .frontend {
+    background-color: $black-ter;
+    .title, i, h1 {
+      color: $green;
+    }
+    hr {
+      background-color: $green;
+    }
+  }
+
+  .sysadmin {
+    background-color: $black-bis;
+    .title, i, h1 {
+      color: $orange;
+    }
+    hr {
+      background-color: $orange;
+    }
+  }
+
+  .info {
+    background-color: $black-bis;
+    hr {
+      background-color: $white;
+      margin-bottom: 1rem;
+    }
+    .section {
+      text-align: left;
+    }
+  }
+}

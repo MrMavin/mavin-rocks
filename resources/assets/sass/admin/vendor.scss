@@ -1,0 +1,20 @@
+/** BULMA **/
+@import "../../../../node_modules/bulma/sass/utilities/_all";
+@import "../../../../node_modules/bulma/sass/base/_all";
+@import "../../../../node_modules/bulma/sass/elements/_all";
+@import "../../../../node_modules/bulma/sass/components/_all";
+@import "../../../../node_modules/bulma/sass/grid/_all";
+@import "../../../../node_modules/bulma/sass/layout/_all";
+
+/** FONT-AWESOME 5 **/
+
+$fa-font-path: "../../../../node_modules/@fortawesome/fontawesome-free/webfonts";
+
+@import "../../../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
+@import "../../../../node_modules/@fortawesome/fontawesome-free/scss/brands";
+@import "../../../../node_modules/@fortawesome/fontawesome-free/scss/regular";
+@import "../../../../node_modules/@fortawesome/fontawesome-free/scss/solid";
+
+/** TRUMBOWYG **/
+
+@import "../../../../node_modules/trumbowyg/dist/ui/sass/trumbowyg";

@@ -1,0 +1,32 @@
+div.tagsinput {
+  border: 1px solid #CCC;
+  background: #FFF;
+  padding: 5px;
+  width: 100% !important;
+  min-height: auto !important;
+  height: auto !important;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+div.tagsinput span.tag {
+  padding: 1rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+div.tagsinput span.tag a {
+  font-weight: bold;
+}
+
+div.tagsinput input {
+  border: none;
+}
+
+.not_valid {
+  background: #FBD8DB !important;
+  color: #90111A !important
+}

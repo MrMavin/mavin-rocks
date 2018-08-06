@@ -1,0 +1,10 @@
+.about {
+  .background {
+    height: 100%;
+    background: linear-gradient(90deg, $grey-dark 50%, $black-ter 50%);
+  }
+
+  p.tl-dr {
+    display: none;
+  }
+}

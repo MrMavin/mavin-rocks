@@ -1,0 +1,195 @@
+a:focus {
+  outline: none;
+}
+
+a:active {
+  background-color: transparent;
+}
+
+*::selection {
+  background: $white;
+  color: $grey-dark;
+}
+
+.container {
+  .columns {
+    margin: 0;
+  }
+}
+
+.hero {
+
+  .section {
+    text-align: center;
+    margin-top: -2rem;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    h1 {
+      font-size: 3.75rem;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      color: $grey;
+      width: 40%;
+      margin: 0 auto;
+    }
+
+    hr {
+      background-color: $grey-dark;
+      margin: 3rem auto;
+    }
+
+    @include touch{
+      h1{
+        font-size: 2.75rem;
+      }
+
+      h2{
+        font-size: 1.15rem;
+        width: 80%;
+      }
+    }
+  }
+
+  .content {
+    h1, h2, h3, h4, h5, h6 {
+      color: $white;
+    }
+
+    .title {
+      margin-top: 0;
+    }
+
+    .subtitle {
+      margin-top: 0;
+      font-weight: normal;
+      font-size: $size-medium;
+    }
+
+    hr {
+      background-color: $grey;
+      margin-left: 0;
+    }
+
+    p {
+      text-align: justify;
+    }
+  }
+}
+
+hr {
+  width: 20%;
+  margin: 2rem auto;
+  background-color: $grey-dark;
+  height: 1px;
+}
+
+.arrow {
+  height: 100px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: -50px;
+  &.black-bis:before {
+    box-shadow: 0 0 0 3000px $black-bis;
+  }
+  &.black-ter:before {
+    box-shadow: 0 0 0 3000px $black-ter;
+  }
+}
+
+.arrow:before {
+  position: absolute;
+  top: -50px;
+  left: calc(50% - 35px);
+  content: "";
+  height: 50px;
+  width: 50px;
+  -webkit-transform-origin: 0 100%;
+  -moz-transform-origin: 0 100%;
+  -ms-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.content {
+  strong {
+    color: inherit;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: inherit;
+  }
+
+  a {
+    color: $red;
+
+    &:hover, &:active {
+      color: $red-light;
+    }
+  }
+
+  pre {
+    code {
+      color: $grey-dark;
+    }
+  }
+
+  blockquote {
+    border-left: 0.5rem solid $grey;
+    color: $grey-dark;
+  }
+
+  img {
+    &.is-pulled-right, &.is-pulled-left {
+      padding: 0 2rem;
+    }
+  }
+}
+
+@include mobile {
+  .hero {
+    .section {
+      h2 {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@include tablet {
+  .hero {
+    .section {
+      h2 {
+        width: 80%;
+      }
+    }
+  }
+}
+
+@include desktop {
+  .hero {
+    .section {
+      h2 {
+        width: 60%;
+      }
+    }
+  }
+}
+
+@include widescreen {
+  .hero {
+    .section {
+      h2 {
+        width: 40%;
+      }
+    }
+  }
+}

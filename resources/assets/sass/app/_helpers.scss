@@ -1,0 +1,25 @@
+$availableColors: (
+        'orange': $orange,
+        'yellow': $yellow,
+        'green': $green,
+        'red': $red,
+        'red-light': $red-light,
+        'grey': $grey,
+        'grey-dark': $grey-dark,
+        'black-ter': $black-ter,
+        'black-bis': $black-bis,
+        'white': $white
+);
+
+@each $name, $color in $availableColors {
+  .color-#{$name} {
+    color: $color !important;
+  }
+  .bg-#{$name} {
+    background-color: $color !important;
+  }
+}
+
+.display-none{
+  display: none;
+}

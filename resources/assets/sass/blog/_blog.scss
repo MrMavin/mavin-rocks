@@ -1,0 +1,199 @@
+.blog {
+  background-color: $black-bis;
+
+  .filters {
+    h1 {
+      font-size: 2rem;
+    }
+    h2 {
+      font-size: 1.15rem;
+    }
+  }
+
+  .column {
+    padding: 3rem 1.5rem;
+  }
+
+  .tags {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    .tag, .level-item {
+      color: $black-ter;
+      text-decoration: none;
+    }
+  }
+
+  .sidebar {
+    .tag {
+      background-color: $white;
+      padding: 1.75rem;
+      border-radius: 0;
+    }
+  }
+
+  .title {
+    color: $white;
+  }
+
+  .article, .articles {
+    margin: 2rem 0;
+    color: $grey;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .content {
+      text-align: justify;
+      font-size: 1.15rem;
+    }
+
+    .meta {
+      font-size: 1.15rem;
+      margin-bottom: 0;
+
+      a {
+        color: $red;
+
+        &:hover, &:active {
+          color: $red-light;
+        }
+      }
+    }
+
+    hr {
+      width: 100%;
+      background-color: $grey-dark;
+      margin: 1rem 0;
+    }
+
+    .tags {
+      padding: 2rem;
+      margin: 0;
+    }
+  }
+
+  .articles {
+    .title {
+      font-size: 1.85rem;
+    }
+
+    .footer-line {
+      height: 0.6rem;
+      background-color: $green;
+      &.image {
+        background-color: $red;
+      }
+    }
+
+    .card-content {
+      background-color: $black-ter;
+      padding: 3rem;
+    }
+  }
+
+  .article {
+    .title {
+      font-size: 3rem;
+      font-weight: lighter;
+      margin-bottom: 0;
+    }
+
+    .content {
+      margin: 2rem 0;
+      font-size: 1.15rem;
+    }
+
+    .tags {
+      padding: 0;
+      margin-bottom: 1rem;
+
+      .level-item{
+        color: $white;
+
+      }
+    }
+  }
+
+  .pagination {
+    text-align: center;
+    margin: 0 auto;
+
+    .pagination-list {
+      justify-content: center;
+    }
+
+    .pagination-previous, .pagination-next {
+      display: none;
+    }
+
+    .pagination-link {
+      padding: 1.25rem;
+      border-radius: 0;
+      background-color: transparent;
+      border: 0.2rem solid $white;
+      color: $white;
+      font-size: 0.875rem;
+      font-weight: bold;
+
+      &:hover, &.is-current {
+        color: $red;
+        border-color: $red;
+      }
+    }
+
+    [disabled] {
+      border: 0.2rem solid $grey-light;
+      color: $grey-light !important;
+    }
+  }
+
+  @include mobile {
+    .columns{
+      display: flex;
+      flex-direction: column-reverse;
+      .tags{
+        margin-bottom: 0;
+      }
+    }
+
+    .column {
+      padding: 1rem 1.5rem;
+    }
+
+    .card {
+      .media {
+        margin-bottom: 0;
+      }
+    }
+
+    .articles, .article {
+      .tags {
+        padding: 1rem 0;
+        justify-content: center;
+        .level-item {
+          padding: 0.5rem;
+        }
+      }
+
+      .card-content {
+        padding: 1.5rem;
+      }
+
+      .level-item, .level-right {
+        margin: 0;
+      }
+    }
+
+    .article {
+      .title, .content {
+        padding: 0;
+      }
+    }
+  }
+}

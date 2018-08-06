@@ -1,0 +1,88 @@
+#navigation {
+  .navbar-brand {
+    .logo {
+      padding: 1.5rem;
+      svg {
+        @include mobile {
+          width: 40mm;
+        }
+        @include tablet {
+          width: 50mm;
+        }
+        @include desktop {
+          width: 60mm;
+        }
+        @include widescreen {
+          width: 60mm;
+        }
+        width: 70mm;
+        height: auto;
+      }
+      &:hover {
+        svg path {
+          fill: $red;
+        }
+      }
+    }
+  }
+
+  .navbar-burger {
+    width: 100%;
+    height: auto;
+    position: static;
+    &:hover {
+      background-color: transparent;
+    }
+    i {
+      color: $grey-dark;
+      position: relative;
+      float: right;
+      margin-right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+@include touch {
+  #navigation {
+    .navbar-menu {
+      a.navbar-item {
+        text-align: center;
+        padding: 1.5rem 2rem;
+      }
+    }
+
+    .is-visible-mobile {
+      display: block;
+    }
+  }
+}
+
+@include desktop {
+  #navigation {
+    .navbar-menu {
+      font-size: $size-normal;
+      a.navbar-item {
+        padding: 1.5rem;
+      }
+    }
+
+    &.admin {
+      .has-dropdown {
+        .navbar-item {
+          padding: 0.25rem 0.75rem;
+        }
+      }
+    }
+  }
+}
+
+@include from($desktop) {
+  #navigation {
+    .navbar-menu {
+      display: flex !important;
+      height: 100% !important;
+    }
+  }
+}
