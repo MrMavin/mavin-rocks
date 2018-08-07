@@ -21,8 +21,8 @@ class GitHubController extends Controller
 		$user = User::whereEmail($email)->first();
 
 		if (!$user) {
-			abort(403);
-		} // TODO manage unauthorized access
+			abort(401, 'Your account lacks required permissions');
+		}
 
 		\Auth::login($user);
 

@@ -14,11 +14,14 @@
         <div class="hero-body">
             <div class="container">
                 <h1 class="title">
-                    403
+                    401
                 </h1>
                 <h2 class="subtitle">
                     Unauthorized
                 </h2>
+                <h3 class="info">
+                    {{ $exception->getMessage() }}
+                </h3>
                 <p>
                     <a href="{{ route('auth.github') }}">Login</a>
                 </p>

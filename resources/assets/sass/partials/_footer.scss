@@ -1,10 +1,13 @@
 .footer {
   background-color: $white;
-  color: $grey;
-  padding: 3rem 0;
-}
+  color: $grey-dark;
+  padding: 1rem 0;
+  text-align: center;
 
-.copyright {
-  padding: 2rem 1.5rem;
-  font-size: $size-normal;
+  a{
+    color: $black-bis;
+    &:hover, &:active{
+      text-decoration: underline;
+    }
+  }
 }

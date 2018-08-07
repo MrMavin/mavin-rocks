@@ -52,7 +52,6 @@
       text-align: justify;
       font-size: 1.15rem;
       color: $grey;
-
     }
 
     .meta {
@@ -97,6 +96,10 @@
       background-color: $black-ter;
       padding: 3rem;
     }
+
+    .content{
+      margin: 0;
+    }
   }
 
   .article {
@@ -104,11 +107,6 @@
       font-size: 3rem;
       font-weight: lighter;
       margin-bottom: 0;
-    }
-
-    .content {
-      margin: 2rem 0;
-      font-size: 1.15rem;
     }
 
     .tags {
