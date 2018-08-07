@@ -19,11 +19,13 @@ class CreateBlogArticleBlogTagTable extends Migration
 			$table->foreign('blog_article_id')
 				->references('id')
 				->on('blog_articles')
+				->onUpdate('cascade')
 				->onDelete('cascade');
 
 			$table->foreign('blog_tag_id')
 				->references('id')
 				->on('blog_tags')
+				->onUpdate('cascade')
 				->onDelete('cascade');
 		});
 	}
