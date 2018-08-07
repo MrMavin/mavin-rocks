@@ -1,4 +1,12 @@
 #navigation {
+  a {
+    color: $grey-dark;
+    background-color: transparent;
+    &:hover, &:active, &.is-active{
+      color: $red;
+    }
+  }
+
   .navbar-brand {
     .logo {
       padding: 1.5rem;
@@ -7,15 +15,14 @@
           width: 40mm;
         }
         @include tablet {
-          width: 50mm;
+          width: 45mm;
         }
         @include desktop {
-          width: 60mm;
+          width: 50mm;
         }
         @include widescreen {
-          width: 60mm;
+          width: 55mm;
         }
-        width: 70mm;
         height: auto;
       }
       &:hover {

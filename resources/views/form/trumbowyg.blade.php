@@ -1,13 +1,15 @@
 @push('scripts')
-    <div id="trumbowyg-icons">
-        @php
-            $icons = base_path('node_modules/trumbowyg/dist/ui/icons.svg');
-            $content = \File::get($icons);
-            echo $content;
-        @endphp
-    </div>
+    {{-- XHR request will be dropped because https is not available --}}
+    @if (config('app.env') == 'local')
+        <div id="trumbowyg-icons">
+            @php
+                $icons = base_path('node_modules/trumbowyg/dist/ui/icons.svg');
+                $content = \File::get($icons);
+                echo $content;
+            @endphp
+        </div>
+    @endif
 
-    <script src="{{ mix('js/admin/trumbowyg.plugins.js') }}"></script>
     <script>
         $('textarea')
             .trumbowyg({
@@ -20,6 +22,7 @@
                         ico: 'insertImage'
                     }
                 },
+
                 // Redefine the button pane
                 btns: [
                     ['viewHTML'],
@@ -28,7 +31,7 @@
                     ['strong', 'em', 'del'],
                     ['superscript', 'subscript'],
                     ['link'],
-                    ['image', 'noembed'], // Our fresh created dropdown
+                    ['image', 'noembed'],
                     ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
                     ['unorderedList', 'orderedList'],
                     ['preformatted'],

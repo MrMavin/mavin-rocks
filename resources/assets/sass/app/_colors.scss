@@ -1,0 +1,42 @@
+$orange: #FF9933;
+$orange-light: #FFAB58;
+$orange-lighter: #FFC082;
+$green: #99CC66;
+$green-light: #C1E998;
+$green-lighter: #DBF3C3;
+$red: #FF6666;
+$red-light: #FF8A8A;
+$red-lighter: #FFB5B5;
+$yellow: #FFCC66;
+$yellow-light: #FFD88A;
+$yellow-lighter: #FFE6B5;
+
+$white: #FFFFFF;
+
+$grey: #999999;
+$grey-dark: #3E3E3E;
+
+$black-ter: #333333;
+$black-bis: #242424;
+
+$availableColors: (
+  'orange': $orange,
+  'green': $green,
+  'red': $red,
+  'yellow': $yellow,
+  'grey': $grey,
+  'grey-dark': $grey-dark,
+  'black-ter': $black-ter,
+  'black-bis': $black-bis,
+  'white': $white
+);
+
+@each $name, $color in $availableColors {
+  .color-#{$name} {
+    color: $color !important;
+  }
+
+  .bg-#{$name} {
+    background-color: $color !important;
+  }
+}

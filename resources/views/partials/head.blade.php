@@ -26,7 +26,4 @@
 <meta name="twitter:creator" content="{{ config('me.social.twitter') }}">
 
 @stack('meta')
-
-<link rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Raleway:400,700">
 @stack('stylesheets')

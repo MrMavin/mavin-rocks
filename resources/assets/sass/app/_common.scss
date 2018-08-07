@@ -1,9 +1,18 @@
-a:focus {
-  outline: none;
+body,
+button,
+input,
+select,
+textarea{
+  font-family: "Raleway", sans-serif !important;
 }
 
-a:active {
-  background-color: transparent;
+a{
+  *:focus{
+    outline: none;
+  }
+  &:active{
+    background-color: transparent;
+  }
 }
 
 *::selection {
@@ -17,8 +26,11 @@ a:active {
   }
 }
 
-.hero {
+.display-none{
+  display: none;
+}
 
+.hero {
   .section {
     text-align: center;
     margin-top: -2rem;
@@ -27,6 +39,7 @@ a:active {
 
     h1 {
       font-size: 3.75rem;
+      color: $white;
       text-transform: uppercase;
       margin-bottom: 1.25rem;
     }
@@ -56,10 +69,6 @@ a:active {
   }
 
   .content {
-    h1, h2, h3, h4, h5, h6 {
-      color: $white;
-    }
-
     .title {
       margin-top: 0;
     }
@@ -81,45 +90,9 @@ a:active {
   }
 }
 
-hr {
-  width: 20%;
-  margin: 2rem auto;
-  background-color: $grey-dark;
-  height: 1px;
-}
-
-.arrow {
-  height: 100px;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-  margin-bottom: -50px;
-  &.black-bis:before {
-    box-shadow: 0 0 0 3000px $black-bis;
-  }
-  &.black-ter:before {
-    box-shadow: 0 0 0 3000px $black-ter;
-  }
-}
-
-.arrow:before {
-  position: absolute;
-  top: -50px;
-  left: calc(50% - 35px);
-  content: "";
-  height: 50px;
-  width: 50px;
-  -webkit-transform-origin: 0 100%;
-  -moz-transform-origin: 0 100%;
-  -ms-transform-origin: 0 100%;
-  transform-origin: 0 100%;
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
 .content {
+  color: $white;
+
   strong {
     color: inherit;
   }
@@ -152,6 +125,13 @@ hr {
       padding: 0 2rem;
     }
   }
+}
+
+hr {
+  width: 20%;
+  margin: 2rem auto;
+  background-color: $grey-dark;
+  height: 1px;
 }
 
 @include mobile {

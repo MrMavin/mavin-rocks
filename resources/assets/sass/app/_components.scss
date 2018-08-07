@@ -1,0 +1,44 @@
+.arrow {
+  height: 100px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: -50px;
+  &.black-bis:before {
+    box-shadow: 0 0 0 3000px $black-bis;
+  }
+  &.black-ter:before {
+    box-shadow: 0 0 0 3000px $black-ter;
+  }
+}
+
+.arrow:before {
+  position: absolute;
+  top: -50px;
+  left: calc(50% - 35px);
+  content: "";
+  height: 50px;
+  width: 50px;
+  -webkit-transform-origin: 0 100%;
+  -moz-transform-origin: 0 100%;
+  -ms-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+#progress{
+  position: fixed;
+  border-radius: 0;
+  z-index: 99;
+  background-color: transparent;
+  color: $red;
+  height: 0.25rem;
+}
+
+#progress[value]::-webkit-progress-bar {
+  background-color: transparent;
+  color: $red;
+}

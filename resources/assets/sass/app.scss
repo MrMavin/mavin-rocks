@@ -1,11 +1,15 @@
-@import "utilities/all";
+@import "../../../node_modules/bulma/sass/utilities/_all";
+
+@import "app/colors";
 @import "app/common";
-@import "app/helpers";
-@import "app/progress";
+@import "app/components";
+
 @import "partials/header";
 @import "partials/footer";
+
 @import "pages/home";
 @import "pages/about";
 @import "pages/skills";
 @import "pages/error";
+
 @import "blog/blog";

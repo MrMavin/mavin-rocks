@@ -3,7 +3,7 @@ $(document).ready(function () {
      * Scroll Reveal
      */
 
-    sr = sr({
+    let sr = ScrollReveal({
         origin: 'top',
         distance: '2rem',
         duration: 500,

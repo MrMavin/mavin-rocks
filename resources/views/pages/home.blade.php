@@ -12,7 +12,8 @@
 @endpush
 
 @section('content')
-    <section class="hero welcome is-halfheight sr-c" style="background: no-repeat left top; background-image: url('{{ mix('images/lead.jpg') }}'); background-size: cover;">
+    {{-- Keep inline style. Otherwise Barba.js won't correctly load the image (TODO: barba refresh styles) --}}
+    <section class="hero welcome is-halfheight sr-c" style="background: url('{{ mix('images/lead.jpg') }}') no-repeat left top; background-size: cover;">
         <div class="hero-body">
             <div class="container">
                 <h1 class="is-uppercase">
