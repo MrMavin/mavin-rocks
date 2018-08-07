@@ -47,7 +47,7 @@
                     </div>
                     <hr>
                     @if ($article->image)
-                        <figure class="image is-16by9">
+                        <figure class="lead-image image is-16by9">
                             <img src="{{ asset('/storage/blog/' . $article->id . '.jpg') }}" alt="{{ $article->title }}">
                         </figure>
                     @endif
