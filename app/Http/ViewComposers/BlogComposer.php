@@ -11,18 +11,28 @@ class BlogComposer
 
 	public function __construct()
 	{
-		$this->tags = BlogTag::select(['tag'])
-		    ->withCount('articles')
-			->orderBy('articles_count', 'DESC')
-			->orderBy('id', 'DESC')
-			->get()
-			->toArray();
+		$blogTagsKey = 'blog_tags';
 
-		// TODO cache
+		if (\Cache::has($blogTagsKey)){
+			$this->tags = \Cache::get($blogTagsKey);
+		}else{
+			$this->tags = $this->__getMostUsedTags();
+			\Cache::put($blogTagsKey, $this->tags, 15);
+		}
 	}
 
 	public function compose(View $view)
 	{
 		$view->with('tags', $this->tags);
+	}
+
+	private function __getMostUsedTags()
+	{
+		return BlogTag::select(['tag'])
+			->withCount('articles')
+			->orderByDesc('articles_count')
+			->orderByDesc('id')
+			->get()
+			->toArray();
 	}
 }
