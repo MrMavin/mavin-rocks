@@ -22,9 +22,6 @@
                 <h3 class="info">
                     {{ $exception->getMessage() }}
                 </h3>
-                <p>
-                    <a href="{{ route('auth.github') }}">Login</a>
-                </p>
             </div>
         </div>
     </section>
