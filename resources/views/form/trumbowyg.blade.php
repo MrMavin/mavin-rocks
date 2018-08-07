@@ -1,14 +1,11 @@
 @push('scripts')
-    {{-- XHR request will be dropped because https is not available --}}
-    @if (config('app.env') == 'local')
-        <div id="trumbowyg-icons">
-            @php
-                $icons = base_path('node_modules/trumbowyg/dist/ui/icons.svg');
-                $content = \File::get($icons);
-                echo $content;
-            @endphp
-        </div>
-    @endif
+    <div id="trumbowyg-icons">
+        @php
+            $icons = base_path('node_modules/trumbowyg/dist/ui/icons.svg');
+            $content = \File::get($icons);
+            echo $content;
+        @endphp
+    </div>
 
     <script>
         $('textarea')
