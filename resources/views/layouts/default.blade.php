@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     @push('stylesheets')
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,700">
