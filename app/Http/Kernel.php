@@ -9,6 +9,12 @@ use App\Http\Middleware\TrimStrings;
 use App\Http\Middleware\TrustProxies;
 use App\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use RenatoMarinho\LaravelPageSpeed\Middleware\CollapseWhitespace;
+use RenatoMarinho\LaravelPageSpeed\Middleware\ElideAttributes;
+use RenatoMarinho\LaravelPageSpeed\Middleware\InsertDNSPrefetch;
+use RenatoMarinho\LaravelPageSpeed\Middleware\RemoveComments;
+use RenatoMarinho\LaravelPageSpeed\Middleware\RemoveQuotes;
+use RenatoMarinho\LaravelPageSpeed\Middleware\TrimUrls;
 
 class Kernel extends HttpKernel
 {
@@ -24,6 +30,12 @@ class Kernel extends HttpKernel
 		TrimStrings::class,
 		\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
 		TrustProxies::class,
+
+		// Page speed
+		CollapseWhitespace::class,
+		ElideAttributes::class,
+		InsertDNSPrefetch::class,
+		RemoveComments::class,
 	];
 
 	/**
