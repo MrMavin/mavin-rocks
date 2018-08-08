@@ -66,13 +66,16 @@
   }
 }
 
-@include desktop {
+@include from($desktop) {
   #navigation {
     .navbar-menu {
       font-size: $size-normal;
       a.navbar-item {
         padding: 1.5rem;
       }
+
+      display: flex !important;
+      height: 100% !important;
     }
 
     &.admin {
@@ -81,15 +84,6 @@
           padding: 0.25rem 0.75rem;
         }
       }
-    }
-  }
-}
-
-@include from($desktop) {
-  #navigation {
-    .navbar-menu {
-      display: flex !important;
-      height: 100% !important;
     }
   }
 }

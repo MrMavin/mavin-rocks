@@ -33,10 +33,10 @@ $availableColors: (
 
 @each $name, $color in $availableColors {
   .color-#{$name} {
-    color: $color !important;
+    color: $color;
   }
 
   .bg-#{$name} {
-    background-color: $color !important;
+    background-color: $color;
   }
 }
