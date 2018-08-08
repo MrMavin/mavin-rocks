@@ -5,7 +5,7 @@
         /
         <a href="{{ route('auth.github') }}" class="no-barba">
             <i class="fab fa-github"></i>
-            <span>admin</span>
+            admin
         </a>
     </p>
 </div>

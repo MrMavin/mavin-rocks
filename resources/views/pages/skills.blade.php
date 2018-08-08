@@ -36,13 +36,13 @@
                                     <strong>Categories</strong>
                                 </li>
                                 <li>
-                                    <i class="fa-fw fas fa-cog"></i> <span class="color-red">Back-end programming</span>
+                                    <i class="fa-fw fas fa-cog"></i>&nbsp;<span class="color-red">Back-end programming</span>
                                 </li>
                                 <li>
-                                    <i class="fa-fw fas fa-desktop"></i> <span class="color-green">Front-end presentation</span>
+                                    <i class="fa-fw fas fa-desktop"></i>&nbsp;<span class="color-green">Front-end presentation</span>
                                 </li>
                                 <li>
-                                    <i class="fa-fw fas fa-server"></i> <span
+                                    <i class="fa-fw fas fa-server"></i>&nbsp;<span
                                             class="color-orange">System administration</span>
                                 </li>
                             </ul>
