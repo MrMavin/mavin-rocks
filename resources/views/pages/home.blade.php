@@ -6,14 +6,13 @@
 @push('meta')
     @php
         view()->share('description', 'I am Mavin, a full stack web developer and aspirant blogger from Italy. Have a look at my personal website and portfolio to discover more about my skills, me and my hobbies.');
-        view()->share('image', asset(mix('images/lead.jpg')))
+        view()->share('image', asset('/images/lead.jpg'))
     @endphp
     <meta property="og:type" content="website">
 @endpush
 
 @section('content')
-    {{-- Keep inline style. Otherwise Barba.js won't correctly load the image (TODO: barba refresh styles) --}}
-    <section class="hero welcome is-halfheight sr-c" style="background: url('{{ mix('images/lead.jpg') }}') no-repeat left top; background-size: cover;">
+    <section class="hero welcome is-halfheight sr-c">
         <div class="hero-body">
             <div class="container">
                 <h1 class="is-uppercase">

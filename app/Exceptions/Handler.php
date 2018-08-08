@@ -49,6 +49,8 @@ class Handler extends ExceptionHandler
 	 */
 	public function render($request, Exception $exception)
 	{
+		\Config::set('csp.enabled', FALSE);
+
 		return parent::render($request, $exception);
 	}
 }

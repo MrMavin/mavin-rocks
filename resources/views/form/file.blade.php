@@ -5,7 +5,7 @@
     $fileName = isset($fileName) ? $fileName : 'sample.pdf';
 @endphp
 @push('scripts')
-    <script>
+    <script nonce="{{ csp_nonce() }}">
         let file = document.getElementById('{{ $name }}');
         file.onchange = function () {
             if (file.files.length > 0) {

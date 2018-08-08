@@ -7,7 +7,7 @@
         @endphp
     </div>
 
-    <script>
+    <script nonce="{{ csp_nonce() }}">
         $('textarea')
             .trumbowyg({
                 autogrow: true,

@@ -18,7 +18,6 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .sass('resources/assets/sass/app.scss', 'public/css', {outputStyle: 'compressed'})
     .sass('resources/assets/sass/admin/admin.scss', 'public/css/admin', {outputStyle: 'compressed'});
 
-mix.copy('resources/assets/images/theme/lead.jpg', 'public/images/lead.jpg');
 mix.copy('resources/assets/images/favicon.ico', 'public/favicon.ico');
 mix.copy('resources/assets/images/favicon-16x16.png', 'public/favicon-16x16.png');
 mix.copy('resources/assets/images/favicon-32x32.png', 'public/favicon-32x32.png');
