@@ -12,6 +12,7 @@ class BlogTag extends Model
 
 	public function articles()
 	{
-		return $this->belongsToMany(BlogArticle::class);
+		return $this->belongsToMany(BlogArticle::class)
+			->where('published', '=', TRUE);
 	}
 }

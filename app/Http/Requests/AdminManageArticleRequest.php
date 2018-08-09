@@ -16,6 +16,13 @@ class AdminManageArticleRequest extends FormRequest
 		return \Auth::check();
 	}
 
+	public function messages()
+	{
+		return [
+			'tags.required_if' => 'Tags are required if you want to publish your article.'
+		];
+	}
+
 	/**
 	 * Get the validation rules that apply to the request.
 	 *
@@ -29,7 +36,7 @@ class AdminManageArticleRequest extends FormRequest
 			'content' => 'required|max:65535',
 			'excerpt' => 'required|max:65535',
 			'published' => 'boolean',
-			'tags' => 'required|max:255'
+			'tags' => 'required_if:published,1|max:255'
 		];
 	}
 }

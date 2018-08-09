@@ -20,6 +20,8 @@ class AppServiceProvider extends ServiceProvider
 
 		// Auto login on local environment
 		if (env('APP_ENV') == 'local') {
+			\Cache::clear();
+
 			try {
 				if (!\Auth::check()) {
 

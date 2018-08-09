@@ -30,6 +30,7 @@ class BlogComposer
 	{
 		return BlogTag::select(['tag'])
 			->withCount('articles')
+			->having('articles_count', '>', 0)
 			->orderByDesc('articles_count')
 			->orderByDesc('id')
 			->get()
