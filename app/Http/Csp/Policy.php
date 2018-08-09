@@ -8,6 +8,9 @@ use Spatie\Csp\Value;
 
 class Policy extends Basic
 {
+	/**
+	 * @throws \Spatie\Csp\Exceptions\InvalidDirective
+	 */
 	public function configure()
 	{
 		parent::configure();
