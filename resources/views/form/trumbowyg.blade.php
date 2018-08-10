@@ -13,14 +13,12 @@
                 autogrow: true,
 
                 btnsDef: {
-                    // Create a new dropdown
                     image: {
                         dropdown: ['insertImage', 'base64', 'upload'],
                         ico: 'insertImage'
                     }
                 },
 
-                // Redefine the button pane
                 btns: [
                     ['viewHTML'],
                     ['historyUndo', 'historyRedo'],
@@ -38,14 +36,7 @@
                 ],
 
                 plugins: {
-                    upload: {
-                        //serverPath: 'https://api.imgur.com/3/image',
-                        //fileFieldName: 'image',
-                        //headers: {
-                        //    'Authorization': 'Client-ID xxxxxxxxxxxx'
-                        //},
-                        //urlPropertyName: 'data.link'
-                    }
+                    upload: {}
                 }
             });
     </script>
