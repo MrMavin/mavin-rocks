@@ -153,6 +153,7 @@ return [
 
 		Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 		HTMLMin\HTMLMin\HTMLMinServiceProvider::class,
+		Telegram\Bot\Laravel\TelegramServiceProvider::class,
 
 		/*
 		 * Application Service Providers...
@@ -211,7 +212,8 @@ return [
 		'Validator' => Illuminate\Support\Facades\Validator::class,
 		'View' => Illuminate\Support\Facades\View::class,
 
-		'HTMLMin' => HTMLMin\HTMLMin\Facades\HTMLMin::class
+		'HTMLMin' => HTMLMin\HTMLMin\Facades\HTMLMin::class,
+		'Telegram'  => Telegram\Bot\Laravel\Facades\Telegram::class
 	],
 
 ];

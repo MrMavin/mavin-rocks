@@ -31,7 +31,7 @@ class MakeUser extends Command
 	 */
 	public function handle()
 	{
-		$email = $this->ask('Please provide an email address:');
+		$email = $this->ask('Please provide an email address');
 
 		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 			$this->error("You didn't provide a valid email address");
@@ -41,7 +41,8 @@ class MakeUser extends Command
 		$user = User::whereEmail($email)->first();
 
 		if ($user) {
-			$this->error('Account already registered');
+			$this->error('User already exists');
+
 			return;
 		}
 

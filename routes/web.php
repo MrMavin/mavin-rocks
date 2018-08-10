@@ -19,6 +19,12 @@ Route::group(['as' => 'page.',
 	Route::get('/skills', 'SkillsController@getSkills')->name('skills');
 });
 
+Route::group(['as' => 'wh.',
+	          'namespace' => 'WebHooks',
+              'prefix' => 'wh'], function () {
+	Route::post('telegram/{token}', 'Telegram@postWebHook')->name('telegram');
+});
+
 Route::group(['as' => 'auth.',
               'namespace' => 'Auth',
               'prefix' => 'auth'], function () {
@@ -28,9 +34,6 @@ Route::group(['as' => 'auth.',
 	//});
 
 	Route::group(['middleware' => 'guest'], function () {
-		//Route::get('login', 'LoginController@getLogin')->name('login');
-		//Route::post('login', 'LoginController@postLogin');
-
 		Route::get('github', 'GitHubController@redirectToProvider')->name('github');
 		Route::get('github/callback', 'GitHubController@handleProviderCallback');
 	});
