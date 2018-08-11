@@ -15,12 +15,12 @@
     <section class="hero welcome is-halfheight sr-c">
         <div class="hero-body">
             <div class="container">
-                <h1 class="is-uppercase">
+                <div class="title is-uppercase">
                     <span class="color-red">Ma</span>rragony
-                </h1>
-                <h2 class="is-uppercase">
+                </div>
+                <div class="subtitle is-uppercase">
                     <span class="color-red">Vin</span>cenzo
-                </h2>
+                </div>
                 <p>
                     <i class="fas fa-code"></i> Full Stack Web Developer / <i class="fas fa-newspaper"></i> Blogger
                 </p>

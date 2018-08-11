@@ -5,20 +5,20 @@
     min-height: 90vh;
     text-align: center;
 
-    h1, h2, p {
+    .title, .subtitle, p {
       color: $white;
     }
 
-    h1, h2 {
+    .title, .subtitle {
       font-size: 5rem;
     }
 
-    h1 {
-      margin-bottom: -3.75rem;
+    .title {
+      margin-bottom: -2.25rem;
       font-weight: normal;
     }
 
-    h2 {
+    .subtitle {
       font-weight: bold;
     }
 
