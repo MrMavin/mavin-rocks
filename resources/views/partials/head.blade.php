@@ -7,6 +7,8 @@
 <link rel="icon" type="image/png" sizes="32x32" href="{{ mix('favicon-32x32.png') }}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ mix('favicon-16x16.png') }}">
 
+<link rel="canonical" href="{{ url()->current() }}">
+
 @if (isset($description))
     @php($description = str_limit(strip_tags($description), 255))
     <meta name="description" content="{{ $description }}">
