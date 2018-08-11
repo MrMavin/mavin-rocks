@@ -21,11 +21,6 @@ class ArticleController extends Controller
 
 	public function getCreate()
 	{
-		// It happens that if you edit an article and then try to create
-		// a new one, the old session will not flush immediately.
-		session()->flush();
-		session()->regenerateToken();
-
 		return view('admin.article.manage', ['edit' => FALSE]);
 	}
 
