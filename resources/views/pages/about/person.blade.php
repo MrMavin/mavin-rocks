@@ -42,4 +42,6 @@
     Would you like to know a bit more about me? Please have a look at my social profiles.
 </p>
 
+<a target="_blank" href="https://twitter.com/MrMavin_"><i class="fab fa-twitter"></i> Twitter</a>
+<br>
 <a target="_blank" href="https://www.instagram.com/mrmavin_/"><i class="fab fa-instagram"></i> Instagram</a>

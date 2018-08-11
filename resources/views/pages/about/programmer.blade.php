@@ -48,8 +48,5 @@
 </p>
 
 <a target="_blank" href="https://github.com/MrMavin"><i class="fab fa-github"></i> GitHub</a>
-
 <br>
-
-<a target="_blank" href="https://stackoverflow.com/users/8811140/mavin"><i class="fab fa-stack-overflow"></i> Stack
-    Overflow</a>
+<a target="_blank" href="https://stackoverflow.com/users/8811140/mavin"><i class="fab fa-stack-overflow"></i> Stack Overflow</a>
