@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminManageArticleRequest;
 use App\Models\BlogArticle;
 use App\Models\BlogTag;
+use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
+use Symfony\Component\Process\Process;
 
 class ArticleController extends Controller
 {
@@ -19,6 +21,11 @@ class ArticleController extends Controller
 
 	public function getCreate()
 	{
+		// It happens that if you edit an article and then try to create
+		// a new one, the old session will not flush immediately.
+		session()->flush();
+		session()->regenerateToken();
+
 		return view('admin.article.manage', ['edit' => FALSE]);
 	}
 
@@ -42,6 +49,9 @@ class ArticleController extends Controller
 		$tagCollection = collect();
 
 		foreach ($tags as $tag) {
+			if (!$tag) // Look for empty tags
+				continue;
+
 			$tagCollection->push(BlogTag::firstOrNew(['tag' => $tag]));
 		}
 
@@ -53,11 +63,20 @@ class ArticleController extends Controller
 	{
 		$filePath = storage_path('app/public/blog');
 		$fileName = $article->id . '.jpg';
+		$fullPath = "$filePath/$fileName";
 
 		$image = \Image::make($file);
 
 		$image->fit(640, 360);
-		$image->save("$filePath/$fileName", 70);
+		$image->save($fullPath, 80);
+
+		$process = new Process("/usr/bin/jpegoptim -m80 -q -s $fileName");
+		$process->setWorkingDirectory($filePath);
+		$process->run();
+
+		if ($process->getExitCode() != 0) {
+			// TODO report error
+		}
 
 		$article->image = 1;
 		$article->save();
@@ -83,6 +102,14 @@ class ArticleController extends Controller
 	{
 		$data = $manageArticleRequest->all();
 		$data['published'] = isset($data['published']) ? $data['published'] : FALSE;
+
+		if ($data['reset_dates'])
+		{
+			$now = Carbon::now();
+
+			$article->created_at = $now;
+			$article->updated_at = $now;
+		}
 
 		$article->update($data);
 		$this->__manageTags($article, $data['tags']);

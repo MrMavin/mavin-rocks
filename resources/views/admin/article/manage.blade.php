@@ -73,6 +73,14 @@
             'value' => 1
         ])
 
+        @if ($edit)
+            @include('form.checkbox', [
+                'label' => 'Reset creation date',
+                'name' => 'reset_dates',
+                'value' => 1
+            ])
+        @endif
+
         <div class="field is-grouped">
             <div class="control">
                 <button type="submit" class="button is-link">Submit</button>

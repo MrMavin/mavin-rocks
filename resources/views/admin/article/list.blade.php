@@ -8,18 +8,15 @@
 
         @foreach($articles as $article)
             <article class="media">
-                <!--
-                <div class="media-left">
-                    <i class="fa-3x fas fa-video"></i>
-                </div>
-                -->
                 <div class="media-content">
                     <div class="content">
                         <p class="is-marginless">
                             <a href="{{ route('admin.blog.article.edit', $article->id) }}">
                                 <strong>{{ $article->title }}</strong>
-                            </a>
-                            <small>{{ $article->created }}</small>
+                            </a>&nbsp;<small>{{ $article->created }}</small>&nbsp;
+                            @if ($article->image)
+                                <i class="fas fa-image"></i>
+                            @endif
                         </p>
                         <p class="@if (!$article->published) unpublished @endif">
                             {{ str_limit(strip_tags($article->excerpt), 255) }}
