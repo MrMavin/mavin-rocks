@@ -59,7 +59,7 @@ class Telegram extends Controller
 		if (!$user) {
 			$this->telegram->sendMessage([
 				'chat_id' => $chatId,
-				'text' => 'Your email is not eligible to receive status updates.'
+				'text' => 'Your account is not eligible to receive status updates.'
 			]);
 		}
 
