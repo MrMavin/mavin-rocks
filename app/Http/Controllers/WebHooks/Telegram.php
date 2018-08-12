@@ -17,8 +17,14 @@ class Telegram extends Controller
 		$this->telegram = app('telegram');
 	}
 
+	/**
+	 * Process WebHook request
+	 *
+	 * @param $token
+	 */
 	public function postWebHook($token)
 	{
+		// Validate request token with app generate unique token
 		if ($token !== getTelegramToken()) {
 			// TODO bad token exception / logging
 			return;
@@ -35,7 +41,7 @@ class Telegram extends Controller
 		$chatId = $chat->getId();
 		$text = $message->getText();
 
-		if (starts_with($text, '/')) { // Command
+		if (starts_with($text, '/')) { // Command, do not process
 			return;
 		}
 

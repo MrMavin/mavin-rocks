@@ -12,6 +12,9 @@ use Symfony\Component\Process\Process;
 
 class ArticleController extends Controller
 {
+	/**
+	 * @return \Illuminate\View\View
+	 */
 	public function getList()
 	{
 		$articles = BlogArticle::orderByDesc('id')->paginate(10);
@@ -19,18 +22,30 @@ class ArticleController extends Controller
 		return view('admin.article.list', ['articles' => $articles]);
 	}
 
+	/**
+	 * Create a new article
+	 *
+	 * @return \Illuminate\View\View
+	 */
 	public function getCreate()
 	{
 		return view('admin.article.manage', ['edit' => FALSE]);
 	}
 
+	/**
+	 * @param AdminManageArticleRequest $manageArticleRequest
+	 *
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
 	public function postCreate(AdminManageArticleRequest $manageArticleRequest)
 	{
 		$data = $manageArticleRequest->all();
 		$data['slug'] = str_slug($data['title']);
 
 		$article = BlogArticle::create($data);
+
 		$this->__manageTags($article, $data['tags']);
+
 		if ($manageArticleRequest->hasFile('image')) {
 			$this->__manageImage($article, $manageArticleRequest->file('image'));
 		}
@@ -38,6 +53,10 @@ class ArticleController extends Controller
 		return $this->__redirectToList('created');
 	}
 
+	/**
+	 * @param BlogArticle $article
+	 * @param             $tags
+	 */
 	private function __manageTags(BlogArticle $article, $tags)
 	{
 		$tags = explode(',', $tags);
@@ -54,6 +73,10 @@ class ArticleController extends Controller
 		$article->tags()->saveMany($tagCollection);
 	}
 
+	/**
+	 * @param BlogArticle  $article
+	 * @param UploadedFile $file
+	 */
 	private function __manageImage(BlogArticle $article, UploadedFile $file)
 	{
 		$filePath = storage_path('app/public/blog');
@@ -62,9 +85,11 @@ class ArticleController extends Controller
 
 		$image = \Image::make($file);
 
+		// Resize image to 16:9 ration
 		$image->fit(640, 360);
 		$image->save($fullPath, 80);
 
+		// Optimize image to reduce size
 		$process = new Process("/usr/bin/jpegoptim -m80 -q -s $fileName");
 		$process->setWorkingDirectory($filePath);
 		$process->run();
@@ -77,6 +102,13 @@ class ArticleController extends Controller
 		$article->save();
 	}
 
+	/**
+	 * Redirect to the articles list and notify about the operation result
+	 *
+	 * @param $action
+	 *
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
 	private function __redirectToList($action)
 	{
 		return redirect()->route('admin.blog.article.list')
@@ -86,18 +118,33 @@ class ArticleController extends Controller
 			]);
 	}
 
+	/**
+	 * @param BlogArticle $article
+	 *
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
 	public function getEdit(BlogArticle $article)
 	{
+		// Flash article data into session
 		session()->flashInput($article->toFormattedArray());
 
 		return view('admin.article.manage', ['edit' => TRUE]);
 	}
 
+	/**
+	 * @param AdminManageArticleRequest $manageArticleRequest
+	 * @param BlogArticle               $article
+	 *
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
 	public function postEdit(AdminManageArticleRequest $manageArticleRequest, BlogArticle $article)
 	{
 		$data = $manageArticleRequest->all();
 		$data['published'] = isset($data['published']) ? $data['published'] : FALSE;
 
+		// Since I could save an article as draft it could be helpful to reset
+		// the dates. This way when I'll publish the article the creation date
+		// won't be in the past
 		if ($data['reset_dates'])
 		{
 			$now = Carbon::now();
@@ -107,7 +154,9 @@ class ArticleController extends Controller
 		}
 
 		$article->update($data);
+
 		$this->__manageTags($article, $data['tags']);
+
 		if ($manageArticleRequest->hasFile('image')) {
 			$this->__manageImage($article, $manageArticleRequest->file('image'));
 		}
@@ -115,6 +164,12 @@ class ArticleController extends Controller
 		return $this->__redirectToList('modified');
 	}
 
+	/**
+	 * @param BlogArticle $article
+	 *
+	 * @return \Illuminate\Http\RedirectResponse
+	 * @throws \Exception
+	 */
 	public function postDelete(BlogArticle $article)
 	{
 		// Exception not handled because impossible in this context

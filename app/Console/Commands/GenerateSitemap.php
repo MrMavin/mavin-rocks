@@ -40,12 +40,13 @@ class GenerateSitemap extends Command
 	public function handle()
 	{
 		$url = config('app.url');
-		$file = public_path('sitemap.xml');
+		$sitemapPath = public_path('sitemap.xml');
 
 		SitemapGenerator::create($url)
 			->hasCrawled(function (Url $url) {
+				// http(s)://{$url}/{$firstLevel}/{$secondLevel}?{$params}
 				$allowedFirstLevel = ['', 'about', 'skills', 'blog'];
-				$disallowedUri = ['page='];
+				$disallowedParams = ['page='];
 
 				$firstLevel = $url->segment(1);
 				$uri = $url->url;
@@ -54,7 +55,7 @@ class GenerateSitemap extends Command
 					return;
 				}
 
-				foreach($disallowedUri as $disallowed)
+				foreach($disallowedParams as $disallowed)
 				{
 					if (str_contains($uri, $disallowed)) {
 						return;
@@ -66,7 +67,7 @@ class GenerateSitemap extends Command
 				}
 
 				if (in_array($url->segment(1), ['about', 'skills'])) {
-					$url->setPriority(0.9);
+					$url->setPriority(1);
 					$url->setChangeFrequency('weekly');
 				}
 
@@ -81,6 +82,6 @@ class GenerateSitemap extends Command
 
 				return $url;
 			})
-			->writeToFile($file);
+			->writeToFile($sitemapPath);
 	}
 }

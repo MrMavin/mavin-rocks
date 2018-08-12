@@ -60,7 +60,7 @@
                                 <i class="fas fa-tags"></i>
                             </span>
                                 @foreach($article->tags as $tag)
-                                    <a href="{{ route('blog.tags', $tag->tag) }}" class="level-item">{{ $tag->tag }}</a>
+                                    <a href="{{ route('blog.tag', $tag->tag) }}" class="level-item">{{ $tag->tag }}</a>
                                 @endforeach
                             </div>
                         </footer>

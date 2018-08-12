@@ -15,6 +15,13 @@
  *
  */
 
+/**
+ * Get the reading time for a content
+ *
+ * @param $content
+ *
+ * @return string
+ */
 function reading_time($content)
 {
 	$options = [

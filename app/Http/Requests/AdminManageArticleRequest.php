@@ -16,6 +16,9 @@ class AdminManageArticleRequest extends FormRequest
 		return \Auth::check();
 	}
 
+	/**
+	 * @return array
+	 */
 	public function messages()
 	{
 		return [

@@ -7,6 +7,9 @@ use App\Models\BlogArticle;
 
 class BlogController extends Controller
 {
+	/**
+	 * @return \Illuminate\View\View
+	 */
 	public function getList()
 	{
 		$articles = BlogArticle::wherePublished(TRUE)
@@ -16,12 +19,22 @@ class BlogController extends Controller
 		return view('blog.list', ['articles' => $articles]);
 	}
 
+	/**
+	 * @param BlogArticle $article
+	 *
+	 * @return \Illuminate\View\View
+	 */
 	public function getArticle(BlogArticle $article)
 	{
 		return view('blog.article', ['article' => $article]);
 	}
 
-	public function getTagsSearch(string $tag)
+	/**
+	 * @param string $tag
+	 *
+	 * @return \Illuminate\View\View
+	 */
+	public function getTagSearch(string $tag)
 	{
 		$articles = BlogArticle::wherePublished(TRUE)
 			->orderByDesc('id')

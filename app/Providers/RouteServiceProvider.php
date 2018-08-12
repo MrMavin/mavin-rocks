@@ -24,7 +24,7 @@ class RouteServiceProvider extends ServiceProvider
 	public function boot()
 	{
 		\Route::model('article', BlogArticle::class);
-		\Route::pattern('tags', '([A-Za-z0-9]+');
+		\Route::pattern('tag', '[A-Za-z0-9]+');
 
 		parent::boot();
 	}

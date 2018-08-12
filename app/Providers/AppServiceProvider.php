@@ -20,11 +20,10 @@ class AppServiceProvider extends ServiceProvider
 
 		// Auto login on local environment
 		if (env('APP_ENV') == 'local') {
-			\Cache::clear();
+			\Cache::clear(); // disable cache
 
 			try {
 				if (!\Auth::check()) {
-
 					$user = User::whereEmail(config('me.email'))->first();
 					\Auth::login($user);
 				}
@@ -39,8 +38,7 @@ class AppServiceProvider extends ServiceProvider
 	 *
 	 * @return void
 	 */
-	public
-	function register()
+	public function register()
 	{
 		//
 	}

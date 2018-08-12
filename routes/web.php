@@ -19,9 +19,9 @@ Route::group(['as' => 'page.',
 	Route::get('/skills', 'SkillsController@getSkills')->name('skills');
 });
 
-Route::group(['as' => 'wh.',
+Route::group(['as' => 'webhooks.',
 	          'namespace' => 'WebHooks',
-              'prefix' => 'wh'], function () {
+              'prefix' => 'webhooks'], function () {
 	Route::post('telegram/{token}', 'Telegram@postWebHook')->name('telegram');
 });
 
@@ -45,7 +45,7 @@ Route::group(['as' => 'blog.',
 
 	Route::get('/', 'BlogController@getList')->name('list');
 	Route::get('/{article}', 'BlogController@getArticle')->name('article');
-	Route::get('/tag/{tag}', 'BlogController@getTagsSearch')->name('tags');
+	Route::get('/tag/{tag}', 'BlogController@getTagSearch')->name('tag');
 });
 
 Route::group(['as' => 'admin.',

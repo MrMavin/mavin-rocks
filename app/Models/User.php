@@ -13,6 +13,9 @@ class User extends Authenticatable
 	public $timestamps = FALSE;
 	protected $fillable = ['email'];
 
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
 	public function articles()
 	{
 		return $this->hasMany(BlogArticle::class);

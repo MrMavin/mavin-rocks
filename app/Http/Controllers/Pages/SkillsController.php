@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 class SkillsController extends Controller
 {
 	/**
-	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 * @return \Illuminate\View\View
 	 */
 	public function getSkills()
 	{

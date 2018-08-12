@@ -46,7 +46,7 @@ class TelegramSetUp extends Command
 	    $telegram->removeWebhook();
 
 	    $token = getTelegramToken();
-	    $url = route('wh.telegram', $token);
+	    $url = route('webhooks.telegram', $token);
 
 	    $telegram->setWebhook([
 	    	'url' => $url

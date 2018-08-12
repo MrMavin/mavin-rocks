@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Generate an unique telegram token for WebHook requests
+ *
+ * @return string
+ */
 function getTelegramToken()
 {
 	$botToken = config('telegram.bot_token');

@@ -21,11 +21,17 @@ class BlogComposer
 		}
 	}
 
+	/**
+	 * @param View $view
+	 */
 	public function compose(View $view)
 	{
 		$view->with('tags', $this->tags);
 	}
 
+	/**
+	 * @return array
+	 */
 	private function __getMostUsedTags()
 	{
 		return BlogTag::select(['tag'])
