@@ -49,6 +49,9 @@ class Handler extends ExceptionHandler
 	 */
 	public function render($request, Exception $exception)
 	{
+		// Disable Content Security Policy since it will block
+		// All inline styles, useful to provide a better debug
+		// interface when an exception is handled.
 		\Config::set('csp.enabled', FALSE);
 
 		return parent::render($request, $exception);
