@@ -4,8 +4,6 @@ namespace Tests\Unit;
 
 use Intervention\Image\Exception\NotSupportedException;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class imageDriversTest extends TestCase
 {
@@ -32,7 +30,7 @@ class imageDriversTest extends TestCase
 	 */
 	private function tryDriver($driver)
 	{
-		$testImage = storage_path('app/tests/test.png');
+		$testImage = resource_path('assets/tests/test.png');
 
 		\Image::configure([
 			'driver' => $driver
