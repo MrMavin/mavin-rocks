@@ -25,7 +25,8 @@ class AppServiceProvider extends ServiceProvider
 			try {
 				if (!\Auth::check()) {
 					$user = User::whereEmail(config('me.email'))->first();
-					\Auth::login($user);
+					if ($user)
+						\Auth::login($user);
 				}
 			} catch (\Exception $e) {}
 		}
