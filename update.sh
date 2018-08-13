@@ -3,6 +3,10 @@
 # Enable maintenance mode
 php artisan down
 
+# Pull repository
+git reset HEAD --hard
+git pull
+
 # Updates
 php artisan clear-compiled
 composer install
@@ -28,3 +32,6 @@ php artisan sitemap:generate
 
 # Disable maintenance mode
 php artisan up
+
+# Run unit tests
+vendor/bin/phpunit
