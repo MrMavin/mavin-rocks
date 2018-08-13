@@ -82,6 +82,12 @@ $(document).ready(function () {
     });
 
     Barba.Dispatcher.on('newPageReady', function (currentStatus, oldStatus, container) {
+        gtag('config', 'UA-107667698-1', {
+            'page_title' : document.title,
+            'page_path': location.pathname,
+            'page_location' : location.href
+        });
+
         setActive(currentStatus.namespace);
         navMenu.hide();
 
@@ -91,11 +97,13 @@ $(document).ready(function () {
 
     Barba.Dispatcher.on('transitionCompleted', function (currentStatus, oldStatus, container) {
         resetProgress();
+
         if (currentStatus.namespace.indexOf('article') !== -1){
             enableProgressScroll();
         }else{
             disableProgressScroll();
         }
+
         sr.sync();
     });
 
