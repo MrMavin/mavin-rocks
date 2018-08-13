@@ -7,17 +7,17 @@ use Illuminate\View\View;
 
 class BlogComposer
 {
+	public static $blogTagsKey = 'blog_tags';
+
 	protected $tags;
 
 	public function __construct()
 	{
-		$blogTagsKey = 'blog_tags';
-
-		if (\Cache::has($blogTagsKey)){
-			$this->tags = \Cache::get($blogTagsKey);
+		if (\Cache::has(self::$blogTagsKey)){
+			$this->tags = \Cache::get(self::$blogTagsKey);
 		}else{
 			$this->tags = $this->__getMostUsedTags();
-			\Cache::put($blogTagsKey, $this->tags, 15);
+			\Cache::put(self::$blogTagsKey, $this->tags, 15);
 		}
 	}
 
@@ -41,5 +41,10 @@ class BlogComposer
 			->orderByDesc('id')
 			->get()
 			->toArray();
+	}
+
+	public static function clearMostUsedTags()
+	{
+		\Cache::forget(self::$blogTagsKey);
 	}
 }
