@@ -148,7 +148,7 @@ class ArticleController extends Controller
 		// Since I could save an article as draft it could be helpful to reset
 		// the dates. This way when I'll publish the article the creation date
 		// won't be in the past
-		if ($data['reset_dates'])
+		if (isset($data['reset_dates']) && $data['reset_dates'])
 		{
 			$now = Carbon::now();
 
