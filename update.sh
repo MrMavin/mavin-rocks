@@ -47,11 +47,11 @@ php artisan config:cache
 # Hooks
 php artisan telegram:setup
 
-# Regenerate sitemap
-php artisan sitemap:generate
-
 # Disable maintenance mode
 php artisan up
+
+# Regenerate sitemap
+php artisan sitemap:generate
 
 # Run unit tests
 vendor/bin/phpunit
