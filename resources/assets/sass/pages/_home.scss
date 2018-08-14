@@ -159,12 +159,12 @@
 @include touch {
   .home {
     .welcome {
-      h1, h2 {
+      .title, .subtitle {
         font-size: 3rem;
       }
 
-      h1 {
-        margin-bottom: -2.25rem;
+      .title {
+        margin-bottom: 0;
       }
     }
 
