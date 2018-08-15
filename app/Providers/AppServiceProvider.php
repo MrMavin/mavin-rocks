@@ -19,9 +19,7 @@ class AppServiceProvider extends ServiceProvider
 		Paginator::defaultView('common.paginator');
 
 		// Auto login on local environment
-		if (env('APP_ENV') == 'local') {
-			\Cache::clear(); // disable cache
-
+		if (config('app.env') == 'local') {
 			try {
 				if (!\Auth::check()) {
 					$user = User::whereEmail(config('me.email'))->first();

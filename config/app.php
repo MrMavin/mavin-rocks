@@ -152,6 +152,7 @@ return [
 		 */
 
 		Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+		Barryvdh\Debugbar\ServiceProvider::class,
 		HTMLMin\HTMLMin\HTMLMinServiceProvider::class,
 		Telegram\Bot\Laravel\TelegramServiceProvider::class,
 
@@ -213,7 +214,8 @@ return [
 		'View' => Illuminate\Support\Facades\View::class,
 
 		'HTMLMin' => HTMLMin\HTMLMin\Facades\HTMLMin::class,
-		'Telegram'  => Telegram\Bot\Laravel\Facades\Telegram::class
+		'Telegram'  => Telegram\Bot\Laravel\Facades\Telegram::class,
+		'Debugbar' => Barryvdh\Debugbar\Facade::class
 	],
 
 ];
