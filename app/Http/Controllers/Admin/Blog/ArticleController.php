@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin\Blog;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminManageArticleRequest;
-use App\Http\ViewComposers\BlogComposer;
+use App\Http\ViewComposers\BlogSidebarComposer;
 use App\Models\BlogArticle;
 use App\Models\BlogTag;
 use Carbon\Carbon;
@@ -73,7 +73,7 @@ class ArticleController extends Controller
 		$article->tags()->detach();
 		$article->tags()->saveMany($tagCollection);
 
-		BlogComposer::clearMostUsedTags();
+		BlogSidebarComposer::clearMostUsedTags();
 	}
 
 	/**

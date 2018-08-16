@@ -8,15 +8,7 @@ class BlogArticle extends Model
 {
 	protected $table = 'blog_articles';
 	protected $fillable = ['title', 'slug', 'excerpt', 'content', 'published'];
-	protected $with = ['tags', 'user'];
-
-	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-	 */
-	public function user()
-	{
-		return $this->belongsTo(User::class);
-	}
+	protected $with = ['tags'];
 
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

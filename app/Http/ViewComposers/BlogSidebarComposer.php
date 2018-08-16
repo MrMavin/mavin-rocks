@@ -5,7 +5,7 @@ namespace App\Http\ViewComposers;
 use App\Models\BlogTag;
 use Illuminate\View\View;
 
-class BlogComposer
+class BlogSidebarComposer
 {
 	public static $blogTagsKey = 'blog_tags';
 
@@ -13,9 +13,10 @@ class BlogComposer
 
 	public function __construct()
 	{
-		if (\Cache::has(self::$blogTagsKey)){
-			$this->tags = \Cache::get(self::$blogTagsKey);
-		}else{
+		$this->tags = \Cache::get(self::$blogTagsKey, false);
+
+		if ($this->tags == false)
+		{
 			$this->tags = $this->__getMostUsedTags();
 			\Cache::put(self::$blogTagsKey, $this->tags, 15);
 		}
