@@ -180,7 +180,7 @@
                         [
 							'icon' => 'fas fa-wrench',
 							'title' => 'DevOps',
-							'skills' => '3Hosting,3Backups,3Deployment,3Maintenance,2Testing'
+							'skills' => '3Hosting,3Backups,3Deployment,3Maintenance,3Troubleshooting,2Testing'
 						],
 						[
 							'icon' => 'fas fa-plus-square',
