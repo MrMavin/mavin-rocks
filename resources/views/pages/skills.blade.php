@@ -92,7 +92,7 @@
 						[
 							'icon' => 'fas fa-download',
 							'title' => 'Software',
-							'skills' => '3phpStorm,2Vagrant,2Slack,2Postman,1Docker'
+							'skills' => '3phpStorm,3Docker,2Vagrant,2Slack,2Postman'
 						],
 						[
 							'icon' => 'fas fa-cubes',
