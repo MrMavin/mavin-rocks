@@ -185,7 +185,7 @@
 						[
 							'icon' => 'fas fa-plus-square',
 							'title' => 'Misc',
-							'skills' => '3Terminal,3DigitalOcean,3PGP,2Cryptocurrencies,2Tor'
+							'skills' => '3Terminal,3DigitalOcean,3PGP,2AWS,2Cryptocurrencies,2Tor'
 						]
 					];
 					?>
