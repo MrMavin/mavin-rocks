@@ -139,6 +139,10 @@ hr {
 }
 
 @include mobile {
+  .content pre{
+    white-space: pre-wrap;
+  }
+
   .hero {
     .section {
       h2 {
