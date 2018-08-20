@@ -23,6 +23,7 @@ Route::group(['as' => 'webhooks.',
 	          'namespace' => 'WebHooks',
               'prefix' => 'webhooks'], function () {
 	Route::post('telegram/{token}', 'Telegram@postWebHook')->name('telegram');
+	Route::post('github', 'GitHub@postWebHook')->name('github');
 });
 
 Route::group(['as' => 'auth.',
