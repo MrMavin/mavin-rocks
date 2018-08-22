@@ -22,7 +22,7 @@
                     <span class="color-red">Vin</span>cenzo
                 </div>
                 <p>
-                    <i class="fas fa-code"></i> Full Stack Web Developer / <i class="fas fa-newspaper"></i> Blogger
+                    <i class="fas fa-code"></i> Full Stack Web Developer
                 </p>
             </div>
         </div>
