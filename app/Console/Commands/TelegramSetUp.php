@@ -55,7 +55,5 @@ class TelegramSetUp extends Command
 		$telegram->setWebhook([
 			'url' => $url
 		]);
-
-		notifyAdmins("Telegram hook registered: {$url}");
 	}
 }

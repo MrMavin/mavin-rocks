@@ -46,14 +46,13 @@ class GitHub extends Controller
 				return 'pong';
 				break;
 			case 'push':
-				$process = new Process(
-					'sh update.sh',
-					base_path()
-				);
+				$environment = config('app.env');
+				notifyAdmins("Push hook received, starting update. ({$environment})");
 
+				$process = new Process('php artisan app:update', base_path());
 				$process->start();
 
-				return 'process started';
+				return 'update queued';
 				break;
 			default:
 				return 'Unknown event';
