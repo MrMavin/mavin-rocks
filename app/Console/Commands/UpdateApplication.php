@@ -49,6 +49,7 @@ class UpdateApplication extends Command
 
 		// start maintenance mode
 		$this->call('down');
+		$this->addNotification('Application down...');
 
 		// calculate fingerprints
 		$composer = [
@@ -74,6 +75,8 @@ class UpdateApplication extends Command
 			$this->runProcess('git reset HEAD --hard');
 		}
 		$this->runProcess('git pull');
+
+		$this->addNotification('Updated app...');
 
 		// calculate fingerprints again
 		$composerHashAfter = $this->getHashFromFile($composer);
@@ -107,6 +110,8 @@ class UpdateApplication extends Command
 		$this->call('config:clear');
 		$this->call('cache:clear');
 
+		$this->addNotification('Cleared everything...');
+
 		if (config('app.env') == 'production') {
 			// cache everything
 			$this->call('route:cache');
@@ -118,14 +123,19 @@ class UpdateApplication extends Command
 
 			// regenerate sitemap
 			$this->call('php artisan sitemap:generate');
+
+			$this->addNotification('Production tasks...');
 		}
 
 		// remove maintenance mode
 		$this->call('up');
 
-		$this->runProcess('vendor/bin/phpunit');
+		$this->addNotification('Up again...');
+
+		//$this->runProcess('vendor/bin/phpunit');
 
 		$this->addNotification('Done.');
+		$this->pushNotification();
 	}
 
 	private function getHashFromFile($file)
@@ -179,20 +189,25 @@ class UpdateApplication extends Command
 		return $files;
 	}
 
-	private function runProcess($process)
+	private function runProcess($processCmd)
 	{
 		$process = new Process(
-			$process,
+			$processCmd,
 			base_path()
 		);
 
-		$process->run();
-		$process->wait();
+		try{
+			$process->run();
+			$process->wait();
+		}catch(\Exception $e)
+		{
+			\Log::info($e);
+		}
 
 		$exitCode = $process->getExitCode();
 
 		if ($exitCode != 0) {
-			$this->addNotification("Process {$process} failed ({$exitCode})");
+			$this->addNotification("Process {$processCmd} failed ({$exitCode})");
 		}
 
 		return $process->getExitCode();
@@ -200,6 +215,7 @@ class UpdateApplication extends Command
 
 	private function addNotification($message)
 	{
+		\Log::info($message);
 		$this->message .= $message . chr(10);
 	}
 
