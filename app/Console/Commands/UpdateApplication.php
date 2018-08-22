@@ -122,7 +122,7 @@ class UpdateApplication extends Command
 			$this->call('telegram:setup');
 
 			// regenerate sitemap
-			$this->call('php artisan sitemap:generate');
+			$this->call('sitemap:generate');
 
 			$this->addNotification('Production tasks...');
 		}
