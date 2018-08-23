@@ -33,9 +33,27 @@ return [
 	*/
 
 	'channels' => [
+		/* CUSTOM */
+
+		'backups' => [
+			'driver' => 'daily',
+			'path' => storage_path('/logs/backups/backup.log'),
+			'level' => 'debug',
+			'days' => 7
+		],
+
+		'updates' => [
+			'driver' => 'daily',
+			'path' => storage_path('/logs/updates/update.log'),
+			'level' => 'debug',
+			'days' => 7
+		],
+
+		/* PREDEFINED */
+
 		'stack' => [
 			'driver' => 'stack',
-			'channels' => ['single'],
+			'channels' => ['daily'],
 		],
 
 		'single' => [

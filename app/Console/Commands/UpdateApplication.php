@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Process\Process;
 
 class UpdateApplication extends Command
@@ -146,8 +147,9 @@ class UpdateApplication extends Command
 			foreach ($file as $f) {
 				$content .= file_get_contents($f);
 			}
-		}else
+		} else {
 			$content = file_get_contents($file);
+		}
 
 		return $this->makeHash($content);
 	}
@@ -196,31 +198,36 @@ class UpdateApplication extends Command
 			base_path()
 		);
 
-		try{
-			$process->run();
-			$process->wait();
-		}catch(\Exception $e)
-		{
-			\Log::info($e);
-		}
+		$process->run();
+		$process->wait();
 
 		$exitCode = $process->getExitCode();
 
 		if ($exitCode != 0) {
-			$this->addNotification("Process {$processCmd} failed ({$exitCode})");
+			$this->addNotification("Process {$processCmd} failed ({$exitCode})", [
+				'errorOutput' => $process->getErrorOutput()
+			]);
 		}
 
 		return $process->getExitCode();
 	}
 
-	private function addNotification($message)
+	private function addNotification($message, $context = [])
 	{
-		\Log::info($message);
+		$this->getLogger()->info($message, $context);
 		$this->message .= $message . chr(10);
 	}
 
 	private function pushNotification()
 	{
 		notifyAdmins($this->message);
+	}
+
+	/**
+	 * @return LoggerInterface
+	 */
+	private function getLogger()
+	{
+		return \Log::channel('updates');
 	}
 }
