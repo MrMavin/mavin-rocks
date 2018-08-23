@@ -34,7 +34,6 @@
 
   .title {
     color: $white;
-    word-break: break-all;
   }
 
   .article, .articles {
@@ -196,6 +195,10 @@
     }
 
     .article {
+      .title{
+        word-break: break-all;
+      }
+
       .title, .content {
         padding: 0;
       }
