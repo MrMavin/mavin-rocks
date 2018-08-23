@@ -65,11 +65,9 @@ class UpdateApplication extends Command
 
 		$assets = resource_path('assets');
 
-		$assetsTree = $this->getDirectoryTree($assets);
-
 		$composerHashBefore = $this->getHashFromFile($composer);
 		$npmHashBefore = $this->getHashFromFile($npm);
-		$assetsTreeHashBefore = $this->makeHash($assetsTree);
+		$assetsTreeHashBefore = $this->makeHash($this->getDirectoryTree($assets));
 
 		// update git
 		if (config('app.env') !== 'local') {
@@ -82,7 +80,7 @@ class UpdateApplication extends Command
 		// calculate fingerprints again
 		$composerHashAfter = $this->getHashFromFile($composer);
 		$npmHashAfter = $this->getHashFromFile($npm);
-		$assetsTreeHashAfter = $this->makeHash($assetsTree);
+		$assetsTreeHashAfter = $this->makeHash($this->getDirectoryTree($assets));
 
 		// clear compiled cache
 		$this->call('clear-compiled');
