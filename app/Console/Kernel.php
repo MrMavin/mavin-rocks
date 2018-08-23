@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\BackupDatabase;
 use App\Console\Commands\GenerateSitemap;
 use App\Console\Commands\MakeUser;
 use App\Console\Commands\TelegramSetUp;
@@ -20,7 +21,8 @@ class Kernel extends ConsoleKernel
 		GenerateSitemap::class,
 		MakeUser::class,
 		TelegramSetUp::class,
-		UpdateApplication::class
+		UpdateApplication::class,
+		BackupDatabase::class
 	];
 
 	/**
@@ -33,6 +35,8 @@ class Kernel extends ConsoleKernel
 	protected function schedule(Schedule $schedule)
 	{
 		$schedule->command('sitemap:generate')->twiceDaily();
+		$schedule->command('backup:database')
+			->cron('0 0 */6 ? * *'); // Every six hours
 	}
 
 	/**
