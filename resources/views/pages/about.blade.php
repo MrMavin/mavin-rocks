@@ -22,7 +22,7 @@
                     <section class="hero">
                         <div class="hero-body">
                             <div class="content">
-                                @include('pages.about.programmer')
+                                {!! parsedown('pages.about.programmer', 1) !!}
                             </div>
                         </div>
                     </section>
