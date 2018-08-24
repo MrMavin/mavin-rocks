@@ -155,6 +155,7 @@ return [
 		Barryvdh\Debugbar\ServiceProvider::class,
 		HTMLMin\HTMLMin\HTMLMinServiceProvider::class,
 		Telegram\Bot\Laravel\TelegramServiceProvider::class,
+		App\Providers\ParsedownServiceProvider::class,
 
 		/*
 		 * Application Service Providers...
