@@ -1,4 +1,24 @@
 .about {
+  .content {
+    h1.title {
+      margin-top: 0;
+    }
+
+    h2.subtitle {
+      font-weight: normal;
+      font-size: $size-medium;
+    }
+
+    hr {
+      background-color: $grey;
+      margin-left: 0;
+    }
+
+    p {
+      text-align: justify;
+    }
+  }
+
   .background {
     height: 100%;
     background: linear-gradient(90deg, $grey-dark 50%, $black-ter 50%);

@@ -45,19 +45,18 @@ a{
       font-size: 3.75rem;
       color: $white;
       text-transform: uppercase;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.375rem;
     }
 
     h2 {
       font-size: 1.25rem;
       color: $grey;
-      width: 40%;
+      width: 60%;
       margin: 0 auto;
     }
 
     hr {
       background-color: $grey-dark;
-      margin: 3rem auto;
     }
 
     @include touch{
@@ -69,27 +68,6 @@ a{
         font-size: 1.15rem;
         width: 80%;
       }
-    }
-  }
-
-  .content {
-    .title {
-      margin-top: 0;
-    }
-
-    .subtitle {
-      margin-top: 0;
-      font-weight: normal;
-      font-size: $size-medium;
-    }
-
-    hr {
-      background-color: $grey;
-      margin-left: 0;
-    }
-
-    p {
-      text-align: justify;
     }
   }
 }
@@ -182,7 +160,7 @@ hr {
   .hero {
     .section {
       h2 {
-        width: 40%;
+        width: 50%;
       }
     }
   }

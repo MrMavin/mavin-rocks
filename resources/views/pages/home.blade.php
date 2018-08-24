@@ -35,7 +35,7 @@
                 <div class="section">
                     <h1>About me</h1>
                     <h2>
-                        TL;DR I'm a programmer. Always looking for new challenges and growth paths.
+                        TL;DR I'm a developer. Following my objectives and getting things done to achieve my long term goals.
                     </h2>
                     <hr>
                 </div>
@@ -44,16 +44,16 @@
                         $cards = [
                             [
                                 'icon' => 'code',
-                                'title' => 'Programmer',
-                                'text' => "Discover me as an experienced and passionate programmer"
+                                'title' => 'Developer',
+                                'text' => "Discover me as an experienced developer with years of experience in the field"
                             ], [
                                 'icon' => 'user',
                                 'title' => 'Person',
-                                'text' => "Read my story, my personality, my interests and my future plans"
+                                'text' => "Read about me and my ideas. Understanding my culture will help you to know you I am"
                             ], [
                                 'icon' => 'book',
                                 'title' => 'Hobbies',
-                                'text' => "Learn about my free time and how my side activities helps me grow"
+                                'text' => "Learn about how I spend my free time and what I like to do when I'm not coding"
                             ],
                         ];
                     @endphp
@@ -102,12 +102,12 @@
                                 'kind' => 'backend',
                                 'icon' => 'php fab',
                                 'name' => 'php',
-                                'description' => 'Up to php7.2 and latest standards. HHVM user'
+                                'description' => 'Up to php7.2 and latest PSR standards'
                             ],[
                                 'kind' => 'backend',
                                 'icon' => 'exchange-alt fas',
                                 'name' => 'APIs',
-                                'description' => 'Very experienced in building APIs'
+                                'description' => 'Experienced in writing APIs to make apps communicate'
                             ],[
                                 'kind' => 'frontend',
                                 'icon' => 'html5 fab',
@@ -122,7 +122,7 @@
                                 'kind' => 'frontend',
                                 'icon' => 'js fab',
                                 'name' => 'JavaScript',
-                                'description' => "Experienced in ES6 and JQuery. Thinking about the next framework to learn"
+                                'description' => "Strong knowledge in ES6. React user"
                             ],[
                                 'kind' => 'frontend',
                                 'icon' => 'mobile-alt fas',
@@ -132,17 +132,17 @@
                                 'kind' => 'sysadmin',
                                 'icon' => 'linux fab',
                                 'name' => 'GNU/Linux',
-                                'description' => 'Proud Fedora Linux user since 5 years now. SysAdmin skills included'
+                                'description' => 'Proud Fedora Linux user since 5 years now. Ready to manage your server'
                             ],[
                                 'kind' => 'sysadmin',
                                 'icon' => 'database fas',
                                 'name' => 'Databases',
-                                'description' => 'MySQL, MariaDB, redis. Learning non relational databases'
+                                'description' => 'Storing using MariaDB, caching with redis. Learning non relational databases'
                             ],[
                                 'kind' => 'sysadmin',
                                 'icon' => 'git fab',
                                 'name' => 'Git',
-                                'description' => 'Version control systems, working with many people on a single project'
+                                'description' => 'Version control systems, working and issuing with many people on a single project'
                             ],[
                                 'kind' => 'sysadmin',
                                 'icon' => 'wrench fas',

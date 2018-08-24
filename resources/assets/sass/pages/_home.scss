@@ -35,7 +35,7 @@
         flex-direction: column;
       }
 
-      .programmer {
+      .developer {
         i {
           color: $red
         }
@@ -71,8 +71,27 @@
       text-align: center;
       background-color: $grey-dark;
 
+      @keyframes background-color-effect {
+        100% {
+          background-color: $grey-darker;
+        }
+      }
+
+      @keyframes rotating-icon-effect {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
       &:hover {
-        background-color: $black-bis;
+        animation-name: background-color-effect;
+        animation-fill-mode: forwards;
+        animation-duration: 500ms;
+        i{
+          animation-name: rotating-icon-effect;
+          animation-fill-mode: forwards;
+          animation-duration: 500ms;
+        }
       }
 
       .card-content {
@@ -85,7 +104,7 @@
         }
 
         p {
-          padding: 0 3rem;
+          padding: 0 2rem;
           color: $grey;
           text-align: center;
         }
@@ -101,7 +120,7 @@
     background-color: $black-bis;
 
     h3 {
-      margin-bottom: 0;
+      margin-bottom: 1rem;
     }
 
     .columns {
@@ -111,6 +130,26 @@
     .column {
       margin-bottom: 2rem;
       text-align: center;
+
+      @keyframes icon-effect {
+        25% {
+          transform: rotate(-90deg);
+        }
+        50%{
+          transform: rotate(90deg);
+        }
+      }
+
+      &:hover{
+        i{
+          animation-name: icon-effect;
+          animation-duration: 500ms;
+        }
+
+        p{
+          color: $white;
+        }
+      }
     }
 
     .backend {
@@ -140,18 +179,6 @@
     p {
       color: $grey;
       text-align: center;
-    }
-
-    .icons {
-      i {
-        margin: 0 -1.5rem;
-      }
-      .left {
-        transform: rotate(-20deg);
-      }
-      .right {
-        transform: rotate(20deg);
-      }
     }
   }
 }
