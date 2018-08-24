@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>{{ config('app.name') }} :: @yield('title')</title>
+<title>@yield('title') :: {{ config('app.name') }}</title>
 
 <link rel="apple-touch-icon" sizes="180x180" href="{{ mix('apple-touch-icon.png') }}">
 <link rel="icon" type="image/x-icon" href="{{ mix('favicon.ico') }}" sizes="48x48">
