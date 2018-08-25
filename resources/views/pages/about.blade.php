@@ -22,7 +22,7 @@
                     <section class="hero">
                         <div class="hero-body">
                             <div class="content">
-                                {!! parsedown('pages.about.programmer', 1) !!}
+                                {!! parsedown('pages.about.programmer', true) !!}
                             </div>
                         </div>
                     </section>
@@ -31,7 +31,7 @@
                     <section class="hero">
                         <div class="hero-body">
                             <div class="content">
-                                @include('pages.about.person')
+                                {!! parsedown('pages.about.person', true) !!}
                             </div>
                         </div>
                     </section>
@@ -47,7 +47,7 @@
                     <section class="hero">
                         <div class="hero-body">
                             <div class="content">
-                                @include('pages.about.hobbies')
+                                {!! parsedown('pages.about.hobbies', true) !!}
                             </div>
                         </div>
                     </section>

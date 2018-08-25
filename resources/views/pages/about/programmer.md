@@ -27,10 +27,10 @@ I'm a Fedora Linux user since five years now.
 ### Back-end programming
 
 At some point I've started to ask myself: how was this website made? Then, I've started to read some
-articles about web developing. After discovering php, I've immediately started to experiment with it.
-Fortunately I had some background experience in programming, so it wasn't hard at all.
+articles about __web developing__. After discovering __php__, I've immediately started to experiment with it.
+Fortunately I had some background experience in programming, so it was pretty easy.
 
-Later I've discovered Laravel Framework. I really liked the project, so I've started to master it.
+Later I've discovered __Laravel Framework__. I really liked the project, so I've started to master it.
 All the concepts about dependency injection, auto-loading and package management were all available in one
 single toolbox. Without considering all the services and features available out of the box.
 This framework helped me a lot to speed up my development process.
@@ -45,16 +45,14 @@ This is why I'm always looking for new paths to improve my design skills.
 
 Unfortunately, I'm not a visual designer, illustrator or an artist.
 I would like to learn, but it's not an important goal to follow right now.
-Give me a design, and I will be more than happy to make a web page out of it!
+Give me a design, and I will be more than happy to make a __web page__ out of it!
 
 <hr>
 
 If you want to see more, please have a look at my profiles.
 
 <a target="_blank" href="https://www.linkedin.com/in/mrmavin/"><i class="fab fa-linkedin"></i> LinkedIn</a>
-<br>
 
 <a target="_blank" href="https://github.com/MrMavin"><i class="fab fa-github"></i> GitHub</a>
-<br>
 
 <a target="_blank" href="https://stackoverflow.com/users/8811140/mavin"><i class="fab fa-stack-overflow"></i> Stack Overflow</a>
