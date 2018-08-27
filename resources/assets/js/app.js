@@ -118,4 +118,13 @@ $(document).ready(function () {
     sr.reveal('.sr-p *');
     sr.reveal('.sr-c .container');
     sr.reveal('.sr-col .column');
+
+    new Typed('#typed', {
+        stringsElement: '#typed-strings',
+        typeSpeed: 50,
+        startDelay: 500,
+        backSpeed: 80,
+        backDelay: 1000,
+        loop: true
+    });
 });

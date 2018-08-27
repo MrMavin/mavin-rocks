@@ -22,8 +22,13 @@
                     <span class="color-red">Vin</span>cenzo
                 </div>
                 <p>
-                    <i class="fas fa-code"></i> Full Stack Web Developer
+                    <span id="typed"></span>
                 </p>
+                <div id="typed-strings" class="display-none">
+                    <p>Full Stack Web Developer</p>
+                    <p>System Administrator</p>
+                    <p>Blogger</p>
+                </div>
             </div>
         </div>
         <div class="arrow black-ter"></div>
