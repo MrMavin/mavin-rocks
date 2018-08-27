@@ -120,14 +120,17 @@ class UpdateApplication extends Command
 			// setup telegram hooks
 			$this->call('telegram:setup');
 
-			// regenerate sitemap
-			$this->call('sitemap:generate');
-
 			$this->addNotification('Production tasks...');
 		}
 
 		// remove maintenance mode
 		$this->call('up');
+
+		if (config('app.env') == 'production') {
+			// sitemap must be generate after the UP command
+			// otherwise it will be empty
+			$this->call('sitemap:generate');
+		}
 
 		$this->addNotification('Up again...');
 
