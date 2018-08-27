@@ -18,16 +18,16 @@
     <div class="background">
         <div class="container sr-p">
             <div class="columns">
-                <div class="column is-half bg-grey-dark">
+                <div class="column is-half bg-grey-dark" id="developer">
                     <section class="hero">
                         <div class="hero-body">
                             <div class="content">
-                                {!! parsedown('pages.about.programmer', true) !!}
+                                {!! parsedown('pages.about.developer', true) !!}
                             </div>
                         </div>
                     </section>
                 </div>
-                <div class="column is-half bg-black-ter">
+                <div class="column is-half bg-black-ter" id="person">
                     <section class="hero">
                         <div class="hero-body">
                             <div class="content">
@@ -42,7 +42,7 @@
 
     <div class="bg-black-bis">
         <div class="container sr-p">
-            <div class="columns is-centered">
+            <div class="columns is-centered" id="hobbies">
                 <div class="column is-half">
                     <section class="hero">
                         <div class="hero-body">

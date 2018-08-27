@@ -65,7 +65,7 @@
 
                     @foreach($cards as $card)
                         <div class="column is-flex {{ strtolower($card['title']) }}">
-                            <a href="{{ route('page.about') }}" class="card">
+                            <a href="{{ route('page.about') }}#{{ strtolower($card['title']) }}" class="card">
                                 <div class="card-content">
                                     <div class="content">
                                         <i class="fas fa-fw fa-5x fa-{{ $card['icon'] }}"></i>

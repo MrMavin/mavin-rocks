@@ -10,9 +10,24 @@ $(document).ready(function () {
         delay: 100,
         easing: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
         viewFactor: 0.2,
-        viewOffset: {top: 100, right: 0, bottom: 0, left: 0},
+        viewOffset: {top: 50, right: 0, bottom: 0, left: 0},
         mobile: false
     });
+
+    /*
+     * Typed
+     */
+
+    let typedSettings = {
+        stringsElement: '#typed-strings',
+        typeSpeed: 50,
+        startDelay: 500,
+        backSpeed: 80,
+        backDelay: 1000,
+        loop: true
+    };
+
+    var typed = null;
 
     /*
      * Manage progress bar
@@ -92,16 +107,28 @@ $(document).ready(function () {
         navMenu.hide();
 
         // won't automatically scroll to top
-        window.scrollTo(0, 0);
+        if (!location.href.includes('#')){
+            window.scrollTo(0, 0);
+        }
     });
 
     Barba.Dispatcher.on('transitionCompleted', function (currentStatus, oldStatus, container) {
         resetProgress();
 
-        if (currentStatus.namespace.indexOf('article') !== -1){
+        if (currentStatus.namespace.includes('article')){
             enableProgressScroll();
         }else{
             disableProgressScroll();
+        }
+
+        if (currentStatus.namespace === 'home') {
+            typed = new Typed('#typed', typedSettings);
+        }else{
+            if (typed !== null){
+                typed.destroy();
+            }else{
+                typed = null;
+            }
         }
 
         sr.sync();
@@ -118,13 +145,4 @@ $(document).ready(function () {
     sr.reveal('.sr-p *');
     sr.reveal('.sr-c .container');
     sr.reveal('.sr-col .column');
-
-    new Typed('#typed', {
-        stringsElement: '#typed-strings',
-        typeSpeed: 50,
-        startDelay: 500,
-        backSpeed: 80,
-        backDelay: 1000,
-        loop: true
-    });
 });
