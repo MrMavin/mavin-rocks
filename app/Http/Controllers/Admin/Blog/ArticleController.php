@@ -72,8 +72,6 @@ class ArticleController extends Controller
 
 		$article->tags()->detach();
 		$article->tags()->saveMany($tagCollection);
-
-		BlogSidebarComposer::clearMostUsedTags();
 	}
 
 	/**
@@ -114,6 +112,8 @@ class ArticleController extends Controller
 	 */
 	private function __redirectToList($action)
 	{
+		BlogSidebarComposer::clearSidebarCache();
+
 		return redirect()->route('admin.blog.article.list')
 			->with('notification', [
 				'status' => 'success',

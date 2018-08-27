@@ -23,7 +23,7 @@
         <div class="columns is-multiline">
             @include('blog.sidebar')
 
-            <div class="column is-8">
+            <div class="column is-9">
                 <div class="article">
                     <h1 class="title">
                         {{ $article->title }}
@@ -31,18 +31,15 @@
                     <hr>
                     <div class="level meta">
                         <div class="level-left">
-                            <p class="level-item">
-                                <a href="{{ route('page.about') }}">{{ config('me.nickname') }}</a>
-                            </p>
-                            <p class="level-item">
-                                <i class="fas fa-circle fa-xs"></i>
-                            </p>
-                            <p class="level-item">{{ $article->created }}</p>
+                            <span class="level-item">
+                                By&nbsp;<a href="{{ route('page.about') }}">{{ config('me.nickname') }}</a>
+                            </span>
+                            <span class="level-item">{{ $article->created }}</span>
                         </div>
                         <div class="level-right">
-                            <p class="level-item">
-                                <i class="fas fa-clock fa-fw"></i>&nbsp;{{ reading_time($article->content) }}
-                            </p>
+                            <span class="level-item">
+                                {{ reading_time($article->content) }} read
+                            </span>
                         </div>
                     </div>
                     <hr>

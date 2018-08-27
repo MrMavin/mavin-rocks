@@ -8,13 +8,13 @@
         <div class="columns is-multiline">
             @include('blog.sidebar')
 
-            <div class="column is-8">
+            <div class="column is-9">
                 @include('blog.components.filters')
 
                 @foreach($articles as $article)
                     <div class="card articles">
                         @if ($article->image)
-                            <a href="{{ route('blog.article', $article->link) }}" class="card-image">
+                            <a href="{{ route('blog.article', get_article_url($article)) }}" class="card-image">
                                 <figure class="image is-16by9">
                                     <img src="{{ asset('/storage/blog/' . $article->id . '.jpg') }}"
                                          alt="{{ $article->title }}">
@@ -25,7 +25,7 @@
                         <div class="card-content">
                             <div class="media">
                                 <div class="media-content">
-                                    <a href="{{ route('blog.article', $article->link) }}" class="title">
+                                    <a href="{{ route('blog.article', get_article_url($article)) }}" class="title">
                                         {{ $article->title }}
                                     </a>
                                     <hr>
@@ -34,14 +34,11 @@
                                             <span class="level-item">
                                                 By&nbsp;<a href="{{ route('page.about') }}">{{ config('me.nickname') }}</a>
                                             </span>
-                                            <span class="level-item">
-                                                <i class="fas fa-circle fa-xs"></i>
-                                            </span>
                                             <span class="level-item">{{ $article->created }}</span>
                                         </div>
                                         <div class="level-right">
                                             <span class="level-item">
-                                                <i class="fas fa-clock fa-xs"></i>&nbsp;{{ reading_time($article->content) }}
+                                                {{ reading_time($article->content) }} read
                                             </span>
                                         </div>
                                     </div>

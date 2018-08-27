@@ -1,6 +1,59 @@
 .blog {
   background-color: $black-bis;
 
+  .sidebar {
+    margin-bottom: 2rem;
+
+    .title {
+      font-size: 1.5rem;
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      margin-top: 2rem;
+    }
+
+    .tag {
+      background-color: $white;
+      padding: 1.25rem 1rem;
+      border-radius: 0;
+
+      &:hover {
+        background-color: $red;
+      }
+    }
+
+    .latest{
+      li{
+        margin-bottom: 1rem;
+        padding-left: 1rem;
+        border-left: 5px solid $white;
+
+        &:last-child{
+          margin-bottom: 0;
+        }
+
+        a{
+          font-size: 1rem;
+          color: $grey-lighter;
+          margin-bottom: 0.25rem;
+          display: block;
+
+
+          &:hover, &:active{
+            color: $red;
+          }
+        }
+
+        .date{
+          display: block;
+          color: $grey;
+        }
+      }
+    }
+  }
+
   .filters {
     h1 {
       font-size: 2rem;
@@ -17,18 +70,11 @@
   .tags {
     font-weight: bold;
     text-transform: uppercase;
-    font-size: 0.875rem;
+    font-size: 0.75rem;
+
     .tag, .level-item {
       color: $black-ter;
       text-decoration: none;
-    }
-  }
-
-  .sidebar {
-    .tag {
-      background-color: $white;
-      padding: 1.75rem;
-      border-radius: 0;
     }
   }
 
@@ -37,12 +83,8 @@
   }
 
   .article, .articles {
-    margin: 2rem 0;
+    margin: 3rem 0;
     color: $grey;
-
-    &:first-child {
-      margin-top: 0;
-    }
 
     &:last-child {
       margin-bottom: 0;
@@ -57,14 +99,6 @@
     .meta {
       font-size: 1.15rem;
       margin-bottom: 0;
-
-      a {
-        color: $red;
-
-        &:hover, &:active {
-          color: $red-light;
-        }
-      }
     }
 
     hr {
@@ -74,14 +108,31 @@
     }
 
     .tags {
-      padding: 2rem;
-      margin: 0;
+      padding: 1.5rem;
+    }
+
+    .meta{
+      a{
+        color: $white;
+
+        &:hover, &:active{
+          color: $red;
+        }
+      }
     }
   }
 
   .articles {
+    &:first-child {
+      margin-top: 0;
+    }
+
     .title {
-      font-size: 1.85rem;
+      &:hover, &:active {
+        color: $red;
+      }
+
+      font-size: 2rem;
     }
 
     .footer-line {
@@ -94,11 +145,21 @@
 
     .card-content {
       background-color: $black-ter;
-      padding: 3rem;
+      padding: 2rem 3rem;
     }
 
-    .content{
+    .content {
       margin: 0;
+    }
+
+    .tags{
+      margin: 0 1.5rem;
+
+      .level-item{
+        &:hover, &:active{
+          color: $red;
+        }
+      }
     }
   }
 
@@ -113,13 +174,13 @@
       padding: 0;
       margin-bottom: 1rem;
 
-      .level-item{
+      .level-item {
         color: $white;
 
       }
     }
 
-    .lead-image{
+    .lead-image {
       margin-bottom: 1.5rem;
     }
   }
@@ -158,10 +219,10 @@
   }
 
   @include mobile {
-    .columns{
+    .columns {
       display: flex;
       flex-direction: column-reverse;
-      .tags{
+      .tags {
         margin-bottom: 0;
       }
     }
