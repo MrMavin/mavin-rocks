@@ -32,7 +32,8 @@ class Kernel extends HttpKernel
 		TrustProxies::class,
 
 		// Page speed
-		CollapseWhitespace::class,
+		// TODO: CollapseWhitespace problems with markdown files
+		// CollapseWhitespace::class,
 		ElideAttributes::class,
 		InsertDNSPrefetch::class,
 		RemoveComments::class,
