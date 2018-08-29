@@ -96,6 +96,9 @@ $(document).ready(function () {
         disableProgressScroll();
     });
 
+    let scrollTo = false;
+    let oldHeight = 0;
+
     Barba.Dispatcher.on('newPageReady', function (currentStatus, oldStatus, container) {
         gtag('config', 'UA-107667698-1', {
             'page_title' : document.title,
@@ -106,10 +109,44 @@ $(document).ready(function () {
         setActive(currentStatus.namespace);
         navMenu.hide();
 
-        // won't automatically scroll to top
-        if (!location.href.includes('#')){
-            window.scrollTo(0, 0);
+        if (currentStatus.namespace === 'home') {
+            typed = new Typed('#typed', typedSettings);
+
+            $("[data-scroll]").click((e) => {
+                scrollTo = e.currentTarget.attributes['data-scroll'].value;
+            });
+        }else{
+            if (typed !== null){
+                typed.destroy();
+            }else{
+                typed = null;
+            }
         }
+
+        //let elem = container.getElementById("#hobbies");
+        //console.log(elem);
+
+        // won't automatically scroll to top
+        if (scrollTo === false){
+            window.scrollTo(0, 0);
+        }else{
+            // I have to manually calculate the current height in order
+            // to scroll to the right position.
+            // Please keep in mind that the current elements positions
+            // aren't correct since they will include the old container's height
+            let c =
+                document.getElementById(scrollTo).getBoundingClientRect().top -
+                oldHeight +
+                window.scrollY;
+
+            $("html, body").animate({
+                scrollTop: c
+            }, 1000);
+
+            scrollTo = false;
+        }
+
+        oldHeight = container.getBoundingClientRect().height;
     });
 
     Barba.Dispatcher.on('transitionCompleted', function (currentStatus, oldStatus, container) {
@@ -119,16 +156,6 @@ $(document).ready(function () {
             enableProgressScroll();
         }else{
             disableProgressScroll();
-        }
-
-        if (currentStatus.namespace === 'home') {
-            typed = new Typed('#typed', typedSettings);
-        }else{
-            if (typed !== null){
-                typed.destroy();
-            }else{
-                typed = null;
-            }
         }
 
         sr.sync();
