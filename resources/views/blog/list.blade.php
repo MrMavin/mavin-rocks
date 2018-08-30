@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Blog')
+@section('title', isset($tag) ? ucfirst($tag) : 'Blog')
 @section('page', 'blog')
 
 @section('content')

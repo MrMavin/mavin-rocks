@@ -43,6 +43,6 @@ class BlogController extends Controller
 			})
 			->paginate(3);
 
-		return view('blog.list', ['articles' => $articles, 'filters' => ['tag' => $tag]]);
+		return view('blog.list', ['articles' => $articles, 'tag' => $tag]);
 	}
 }
