@@ -75,7 +75,7 @@ class GenerateSitemap extends Command
 					$url->setChangeFrequency('daily');
 					$url->setPriority(1);
 
-					if ($url->segment(2) != NULL) { // Article, tag
+					if ($url->segment(2) != NULL) { // Article, tag, category
 						$url->setPriority(0.8);
 					}
 				}

@@ -41,6 +41,14 @@
             'maxlength' => 255
         ])
 
+        @include('form.select', [
+            'label' => 'Category',
+            'name' => 'category_id',
+            'icon' => 'fas fa-list',
+            'data' => $categories,
+            'dataKey' => 'name'
+        ])
+
         @if ($edit)
             @include('form.text', [
             'label' => 'Slug',

@@ -46,6 +46,7 @@ Route::group(['as' => 'blog.',
 
 	Route::get('/', 'BlogController@getList')->name('list');
 	Route::get('/{article}', 'BlogController@getArticle')->name('article');
+	Route::get('/category/{category}', 'BlogController@getCategorySearch')->name('category');
 	Route::get('/tag/{tag}', 'BlogController@getTagSearch')->name('tag');
 });
 

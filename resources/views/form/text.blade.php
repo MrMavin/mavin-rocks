@@ -8,6 +8,7 @@
 @endphp
 <div class="field">
     <label class="label" for="{{ $id }}">{{ $label }}</label>
+
     <div class="control @if (isset($icon)) has-icons-left @endif">
         <input name="{{ $name }}"
                id="{{ $id }}"

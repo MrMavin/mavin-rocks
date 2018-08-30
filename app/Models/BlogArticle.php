@@ -7,9 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class BlogArticle extends Model
 {
 	protected $table = 'blog_articles';
-	protected $fillable = ['title', 'slug', 'excerpt', 'content', 'published'];
-	protected $with = ['tags'];
+	protected $fillable = ['category_id', 'title', 'slug', 'excerpt', 'content', 'published'];
+	protected $with = ['tags', 'category'];
 	protected $casts = ['created_at' => 'date:M j, Y'];
+
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
+	 */
+	public function category()
+	{
+		return $this->hasOne(BlogCategory::class, 'id', 'category_id');
+	}
 
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

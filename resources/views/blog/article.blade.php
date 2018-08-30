@@ -29,19 +29,7 @@
                         {{ $article->title }}
                     </h1>
                     <hr>
-                    <div class="level meta">
-                        <div class="level-left">
-                            <span class="level-item">
-                                By&nbsp;<a href="{{ route('page.about') }}">{{ config('me.nickname') }}</a>
-                            </span>
-                            <span class="level-item">{{ $article->created }}</span>
-                        </div>
-                        <div class="level-right">
-                            <span class="level-item">
-                                {{ reading_time($article->content) }} read
-                            </span>
-                        </div>
-                    </div>
+                    @include('blog.components.meta')
                     <hr>
                     @if ($article->image)
                         <figure class="lead-image image is-16by9">

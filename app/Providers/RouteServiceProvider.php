@@ -25,6 +25,7 @@ class RouteServiceProvider extends ServiceProvider
 	{
 		\Route::model('article', BlogArticle::class);
 		\Route::pattern('tag', '[A-Za-z0-9]+');
+		\Route::pattern('category', '[A-Za-z0-9\-]+');
 
 		parent::boot();
 	}

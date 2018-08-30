@@ -3,19 +3,30 @@
 namespace App\Http\ViewComposers;
 
 use App\Models\BlogArticle;
+use App\Models\BlogCategory;
 use App\Models\BlogTag;
 use Illuminate\View\View;
 
 class BlogSidebarComposer
 {
+	public static $blogCategoriesKey = 'blog_categories';
 	public static $blogTagsKey = 'blog_tags';
 	public static $blogLatestKey = 'blog_latest';
 
+	protected $categories;
 	protected $tags;
 	protected $latest;
 
 	public function __construct()
 	{
+		$this->categories = \Cache::get(self::$blogCategoriesKey, false);
+
+		if ($this->categories == false)
+		{
+			$this->categories = $this->__getCategories();
+			\Cache::put(self::$blogCategoriesKey, $this->categories, 15);
+		}
+
 		$this->tags = \Cache::get(self::$blogTagsKey, false);
 
 		if ($this->tags == false)
@@ -39,8 +50,19 @@ class BlogSidebarComposer
 	 */
 	public function compose(View $view)
 	{
+		$view->with('categories', $this->categories);
 		$view->with('tags', $this->tags);
 		$view->with('latest', $this->latest);
+	}
+
+	private function __getCategories()
+	{
+		return BlogCategory::select(['id', 'name', 'position'])
+			->withCount('articles')
+			->having('articles_count', '>', 0)
+			->orderBy('position')
+			->get()
+			->toArray();
 	}
 
 	/**
@@ -70,6 +92,7 @@ class BlogSidebarComposer
 
 	public static function clearSidebarCache()
 	{
+		\Cache::forget(self::$blogCategoriesKey);
 		\Cache::forget(self::$blogTagsKey);
 		\Cache::forget(self::$blogLatestKey);
 	}

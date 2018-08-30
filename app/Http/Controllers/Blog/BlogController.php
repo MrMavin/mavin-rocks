@@ -30,6 +30,24 @@ class BlogController extends Controller
 	}
 
 	/**
+	 * @param string $category
+	 *
+	 * @return \Illuminate\View\View
+	 */
+	public function getCategorySearch(string $category)
+	{
+		$articles = BlogArticle::wherePublished(TRUE)
+			->orderByDesc('id')
+			->whereCategoryId($category)
+			->paginate(3);
+
+		// clean category string
+		$category = preg_replace('/[0-9\-]+/', '', $category);
+
+		return view('blog.list', ['articles' => $articles, 'category' => $category]);
+	}
+
+	/**
 	 * @param string $tag
 	 *
 	 * @return \Illuminate\View\View

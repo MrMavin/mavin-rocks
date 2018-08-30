@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\ViewComposers\AdminArticleManageComposer;
 use App\Http\ViewComposers\BlogSidebarComposer;
 use App\Models\User;
 use Illuminate\Pagination\Paginator;
@@ -17,7 +18,9 @@ class AppServiceProvider extends ServiceProvider
 	public function boot()
 	{
 		Paginator::defaultView('common.paginator');
+
 		\View::composer('blog.sidebar', BlogSidebarComposer::class);
+		\View::composer('admin.article.manage', AdminArticleManageComposer::class);
 
 		// Auto login on local environment
 		if (config('app.env') == 'local') {

@@ -1,6 +1,18 @@
 @extends('layouts.default')
 
-@section('title', isset($tag) ? ucfirst($tag) : 'Blog')
+@php
+    $title = 'blog';
+
+    if (isset($tag))
+        $title = $tag;
+
+    if (isset($category))
+        $title = $category;
+
+    $title = ucfirst($title);
+@endphp
+
+@section('title', $title)
 @section('page', 'blog')
 
 @section('content')
@@ -29,19 +41,7 @@
                                         {{ $article->title }}
                                     </a>
                                     <hr>
-                                    <div class="level meta">
-                                        <div class="level-left">
-                                            <span class="level-item">
-                                                By&nbsp;<a href="{{ route('page.about') }}">{{ config('me.nickname') }}</a>
-                                            </span>
-                                            <span class="level-item">{{ $article->created }}</span>
-                                        </div>
-                                        <div class="level-right">
-                                            <span class="level-item">
-                                                {{ reading_time($article->content) }} read
-                                            </span>
-                                        </div>
-                                    </div>
+                                    @include('blog.components.meta')
                                     <hr>
                                 </div>
                             </div>
