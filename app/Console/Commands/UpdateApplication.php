@@ -91,6 +91,10 @@ class UpdateApplication extends Command
 			$this->runProcess('composer install');
 		}
 
+		// dumping composer auto-load
+		$this->addNotification('Running composer dump-autoload...');
+		$this->runProcess('composer dump-autoload');
+
 		// npm dependencies have been updated
 		if ($npmHashBefore !== $npmHashAfter) {
 			$this->addNotification('Running npm install...');
