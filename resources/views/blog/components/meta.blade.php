@@ -4,7 +4,9 @@
             By&nbsp;<a href="{{ route('page.about') }}">{{ config('me.nickname') }}</a>
         </span>
         <span class="level-item">{{ $article->created }}</span>
-        <span class="level-item">{{ $article->category->name }}</span>
+        @if ($article->category)
+            <span class="level-item">{{ $article->category->name }}</span>
+        @endif
     </div>
     <div class="level-right">
         <span class="level-item">

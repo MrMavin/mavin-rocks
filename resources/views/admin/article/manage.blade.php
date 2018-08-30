@@ -46,7 +46,8 @@
             'name' => 'category_id',
             'icon' => 'fas fa-list',
             'data' => $categories,
-            'dataKey' => 'name'
+            'dataKey' => 'name',
+            'null' => true
         ])
 
         @if ($edit)

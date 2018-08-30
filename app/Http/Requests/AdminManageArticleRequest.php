@@ -3,9 +3,12 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Concerns\ValidatesAttributes;
 
 class AdminManageArticleRequest extends FormRequest
 {
+	use ValidatesAttributes;
+
 	/**
 	 * Determine if the user is authorized to make this request.
 	 *
@@ -34,6 +37,7 @@ class AdminManageArticleRequest extends FormRequest
 	public function rules()
 	{
 		return [
+			'category_id' => 'nullable|exists:blog_categories,id',
 			'image' => 'nullable|image',
 			'title' => 'required|max:255',
 			'content' => 'required|max:65535',

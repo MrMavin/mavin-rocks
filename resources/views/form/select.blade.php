@@ -10,6 +10,11 @@
     <div class="control has-icons-left">
         <div class="select full-width">
             <select name="{{ $name }}" id="{{ $id }}" class="full-width">
+                @if (isset($null) && $null)
+                    <option value="">
+                        No value
+                    </option>
+                @endif
                 @foreach($data as $d)
                     <option value="{{ $d['id'] }}"
                             @if ($d['id'] == old($name)) selected @endif>
