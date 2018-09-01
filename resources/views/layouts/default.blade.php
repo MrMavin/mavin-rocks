@@ -34,21 +34,9 @@
     @include('partials.footer')
 </footer>
 
-{{-- START Google Analytics --}}
 @if (config('app.env') == 'production')
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107667698-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        {{-- Management in /resources/js/app.js --}}
-    </script>
-@else
-    <script>
-        function gtag(){}
-    </script>
+    <img src="https://matomo.mavin.rocks/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" />
 @endif
-{{-- END Google Analytics --}}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/barba.js/1.0.0/barba.min.js" integrity="sha256-H0TPKZAP4+uKmBpntUUMrKgH4VXBQNDZumun6fvan4w=" crossorigin="anonymous"></script>
