@@ -36,7 +36,7 @@ class Kernel extends ConsoleKernel
 	{
 		$schedule->command('sitemap:generate')->twiceDaily();
 		$schedule->command('backup:database')
-			->cron('0 */6 * * *'); // Every six hours
+			->cron('0 0,6,12,18'); // Every six hours
 	}
 
 	/**
