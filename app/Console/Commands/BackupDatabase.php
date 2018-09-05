@@ -53,7 +53,7 @@ class BackupDatabase extends Command
 		$this->runProcess($removeCmd, $backupPath);
 
 		// make backup
-		$fileName = Carbon::now()->format('d-m-Y@H-s');
+		$fileName = Carbon::now()->format('dmY-Hs');
 		$host = config('database.connections.mysql.host');
 		$user = config('database.connections.mysql.username');
 		$password = config('database.connections.mysql.password');
