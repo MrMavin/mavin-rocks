@@ -1,3 +1,5 @@
+/* globals ScrollReveal Typed Barba */
+
 $(document).ready(() => {
   /*
      * Scroll Reveal
@@ -132,8 +134,8 @@ $(document).ready(() => {
       // Please keep in mind that the current elements positions
       // aren't correct since they will include the old container's height
       const c = document.getElementById(scrollTo).getBoundingClientRect().top
-                - oldHeight
-                + window.scrollY;
+        - oldHeight
+        + window.scrollY;
 
       $('html, body').animate({
         scrollTop: c,

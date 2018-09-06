@@ -1,4 +1,4 @@
-$('.form-delete').click(function () {
+$('.form-delete').click(() => {
   $('form').attr('action', $(this).attr('href')).submit();
 
   return false;
