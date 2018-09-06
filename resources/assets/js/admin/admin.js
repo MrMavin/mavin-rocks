@@ -1,7 +1,7 @@
-$(".form-delete").click(function () {
-    $("form").attr('action', $(this).attr('href')).submit();
+$('.form-delete').click(function () {
+  $('form').attr('action', $(this).attr('href')).submit();
 
-    return false;
+  return false;
 });
 
 $('[name="tags"]').tagsInput();

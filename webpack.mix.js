@@ -1,4 +1,4 @@
-let mix = require('laravel-mix');
+const mix = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -14,9 +14,9 @@ let mix = require('laravel-mix');
 mix.disableNotifications();
 
 mix.js('resources/assets/js/app.js', 'public/js')
-    .js('resources/assets/js/admin/admin.js', 'public/js/admin')
-    .sass('resources/assets/sass/app.scss', 'public/css', {outputStyle: 'compressed'})
-    .sass('resources/assets/sass/admin/admin.scss', 'public/css/admin', {outputStyle: 'compressed'});
+  .js('resources/assets/js/admin/admin.js', 'public/js/admin')
+  .sass('resources/assets/sass/app.scss', 'public/css', { outputStyle: 'compressed' })
+  .sass('resources/assets/sass/admin/admin.scss', 'public/css/admin', { outputStyle: 'compressed' });
 
 mix.copy('resources/assets/images/favicon.ico', 'public/favicon.ico');
 mix.copy('resources/assets/images/favicon-16x16.png', 'public/favicon-16x16.png');
@@ -24,4 +24,4 @@ mix.copy('resources/assets/images/favicon-32x32.png', 'public/favicon-32x32.png'
 mix.copy('resources/assets/images/apple-touch-icon.png', 'public/apple-touch-icon.png');
 
 mix.version();
-mix.browserSync('mavin.test');
+mix.browserSync('mavin-rocks.test');
