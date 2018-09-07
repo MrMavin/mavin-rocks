@@ -19,6 +19,10 @@
     <meta property="og:image" content="{{ $image }}">
 @endif
 
+@if (config('app.env') != 'production')
+    <meta name="robots" content="noindex, nofollow">
+@endif
+
 <meta property="og:title" content="@yield('title')">
 <meta property="og:url" content="{{ url()->current() }}">
 <meta property="og:site_name" content="{{ config('app.name') }}">
