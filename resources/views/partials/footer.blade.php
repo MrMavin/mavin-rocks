@@ -8,4 +8,9 @@
             admin
         </a>
     </p>
+    <p>
+        <a href="https://www.iubenda.com/privacy-policy/37949481"
+           class="iubenda-black iubenda-embed"
+           title="Privacy Policy">Privacy Policy</a>
+    </p>
 </div>

@@ -1,13 +1,17 @@
 .footer {
   background-color: $white;
   color: $grey-dark;
-  padding: 1rem 0;
   text-align: center;
+  padding: 0;
 
   a{
     color: $black-bis;
     &:hover, &:active{
       text-decoration: underline;
     }
+  }
+
+  p{
+    margin: 1rem 0;
   }
 }
