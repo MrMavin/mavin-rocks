@@ -27,16 +27,17 @@
 <div id="barba-wrapper">
     <div class="barba-container @yield('page')" data-namespace="@yield('page')">
         @yield('content')
+
+        @if (config('services.matomo.url'))
+            <img src="{{ config('services.matomo.url') }}/piwik.php?idsite=1&amp;rec=1&amp;rand={{ microtime(true) }}"
+                 style="border:0" alt="" />
+        @endif
     </div>
 </div>
 
 <footer class="footer">
     @include('partials.footer')
 </footer>
-
-@if (config('app.env') == 'production')
-    <img src="https://matomo.mavin.rocks/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" />
-@endif
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/barba.js/1.0.0/barba.min.js" integrity="sha256-H0TPKZAP4+uKmBpntUUMrKgH4VXBQNDZumun6fvan4w=" crossorigin="anonymous"></script>
