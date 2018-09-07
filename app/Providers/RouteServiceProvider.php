@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Models\BlogArticle;
+use App\Models\BlogCategory;
+use App\Models\BlogTag;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
 
@@ -24,8 +26,8 @@ class RouteServiceProvider extends ServiceProvider
 	public function boot()
 	{
 		\Route::model('article', BlogArticle::class);
-		\Route::pattern('tag', '[A-Za-z0-9]+');
-		\Route::pattern('category', '[A-Za-z0-9\-]+');
+		\Route::model('tag', BlogTag::class);
+		\Route::model('category', BlogCategory::class);
 
 		parent::boot();
 	}

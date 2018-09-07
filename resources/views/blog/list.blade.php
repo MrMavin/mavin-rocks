@@ -1,15 +1,13 @@
 @extends('layouts.default')
 
 @php
-    $title = 'blog';
+    $title = 'Blog';
 
     if (isset($tag))
-        $title = $tag;
+        $title = '#' . ucfirst($tag->tag);
 
     if (isset($category))
-        $title = $category;
-
-    $title = ucfirst($title);
+        $title = $category->name;
 @endphp
 
 @section('title', $title)
@@ -57,7 +55,7 @@
                                 <i class="fas fa-tags"></i>
                             </span>
                                 @foreach($article->tags as $tag)
-                                    <a href="{{ route('blog.tag', $tag->tag) }}" class="level-item">{{ $tag->tag }}</a>
+                                    <a href="{{ route('blog.tag', $tag->slug) }}" class="level-item">{{ $tag->tag }}</a>
                                 @endforeach
                             </div>
                         </footer>

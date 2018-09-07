@@ -9,12 +9,12 @@
                     <span class="icon">
                         <i class="fas fa-fw fa-tag"></i>
                     </span>
-                    #{{ $tag }}
+                    #{{ $tag->tag }}
                 @elseif (!empty($category))
                     <span class="icon">
                         <i class="fas fa-fw fa-list"></i>
                     </span>
-                    {{ ucfirst($category) }}
+                    {{ $category->name }}
                 @endif
 
             </h2>

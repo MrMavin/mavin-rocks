@@ -18,7 +18,7 @@
     <h1 class="title">Tags</h1>
     <div class="tags">
         @foreach($tags as $tag)
-            <a href="{{ route('blog.tag', $tag['tag']) }}" class="tag">
+            <a href="{{ route('blog.tag', $tag['slug']) }}" class="tag">
                 {{ $tag['tag'] }}
             </a>
         @endforeach

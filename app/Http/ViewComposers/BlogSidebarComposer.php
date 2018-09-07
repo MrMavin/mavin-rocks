@@ -70,7 +70,7 @@ class BlogSidebarComposer
 	 */
 	private function __getMostUsedTags()
 	{
-		return BlogTag::select(['tag'])
+		return BlogTag::select(['id', 'tag'])
 			->withCount('articles')
 			->having('articles_count', '>', 0)
 			->orderByDesc('articles_count')

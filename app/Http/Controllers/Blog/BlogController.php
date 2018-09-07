@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Blog;
 
 use App\Http\Controllers\Controller;
 use App\Models\BlogArticle;
+use App\Models\BlogCategory;
+use App\Models\BlogTag;
 
 class BlogController extends Controller
 {
@@ -30,34 +32,31 @@ class BlogController extends Controller
 	}
 
 	/**
-	 * @param string $category
+	 * @param BlogCategory $category
 	 *
 	 * @return \Illuminate\View\View
 	 */
-	public function getCategorySearch(string $category)
+	public function getCategorySearch(BlogCategory $category)
 	{
 		$articles = BlogArticle::wherePublished(TRUE)
 			->orderByDesc('id')
-			->whereCategoryId($category)
+			->whereCategoryId($category->id)
 			->paginate(3);
-
-		// clean category string
-		$category = preg_replace('/[0-9\-]+/', '', $category);
 
 		return view('blog.list', ['articles' => $articles, 'category' => $category]);
 	}
 
 	/**
-	 * @param string $tag
+	 * @param BlogTag $tag
 	 *
 	 * @return \Illuminate\View\View
 	 */
-	public function getTagSearch(string $tag)
+	public function getTagSearch(BlogTag $tag)
 	{
 		$articles = BlogArticle::wherePublished(TRUE)
 			->orderByDesc('id')
 			->whereHas('tags', function ($query) use ($tag) {
-				$query->where('tag', $tag);
+				$query->where('id', '=', $tag->id);
 			})
 			->paginate(3);
 
