@@ -12,15 +12,15 @@ class BlogArticle extends Model
 	protected $casts = ['created_at' => 'date:M j, Y'];
 
 	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 */
 	public function category()
 	{
-		return $this->hasOne(BlogCategory::class, 'id', 'category_id');
+		return $this->belongsTo(BlogCategory::class, 'category_id', 'id');
 	}
 
 	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
 	 */
 	public function tags()
 	{
