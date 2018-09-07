@@ -75,6 +75,7 @@ class BlogSidebarComposer
 			->having('articles_count', '>', 0)
 			->orderByDesc('articles_count')
 			->orderByDesc('id')
+			->take(15)
 			->get()
 			->toArray();
 	}
@@ -85,7 +86,7 @@ class BlogSidebarComposer
 			->without('tags')
 			->wherePublished(true)
 			->orderByDesc('created_at')
-			->take(3)
+			->take(4)
 			->get()
 			->toArray();
 	}
