@@ -30,6 +30,8 @@ class ArticleController extends Controller
 	 */
 	public function getCreate()
 	{
+		session()->ageFlashData();
+
 		return view('admin.article.manage', ['edit' => FALSE]);
 	}
 
@@ -52,73 +54,6 @@ class ArticleController extends Controller
 		}
 
 		return $this->__redirectToList('created');
-	}
-
-	/**
-	 * @param BlogArticle $article
-	 * @param             $tags
-	 */
-	private function __manageTags(BlogArticle $article, $tags)
-	{
-		$tags = explode(',', $tags);
-		$tagCollection = collect();
-
-		foreach ($tags as $tag) {
-			if (!$tag) // Look for empty tags
-				continue;
-
-			$tagCollection->push(BlogTag::firstOrNew(['tag' => $tag]));
-		}
-
-		$article->tags()->detach();
-		$article->tags()->saveMany($tagCollection);
-	}
-
-	/**
-	 * @param BlogArticle  $article
-	 * @param UploadedFile $file
-	 */
-	private function __manageImage(BlogArticle $article, UploadedFile $file)
-	{
-		$filePath = storage_path('app/public/blog');
-		$fileName = $article->id . '.jpg';
-		$fullPath = "$filePath/$fileName";
-
-		$image = \Image::make($file);
-
-		// Resize image to 16:9 ration
-		$image->fit(640, 360);
-		$image->save($fullPath, 80);
-
-		// Optimize image to reduce size
-		$process = new Process("/usr/bin/jpegoptim -m80 -q -s $fileName");
-		$process->setWorkingDirectory($filePath);
-		$process->run();
-
-		if ($process->getExitCode() != 0) {
-			// TODO report error
-		}
-
-		$article->image = 1;
-		$article->save();
-	}
-
-	/**
-	 * Redirect to the articles list and notify about the operation result
-	 *
-	 * @param $action
-	 *
-	 * @return \Illuminate\Http\RedirectResponse
-	 */
-	private function __redirectToList($action)
-	{
-		BlogSidebarComposer::clearSidebarCache();
-
-		return redirect()->route('admin.blog.article.list')
-			->with('notification', [
-				'status' => 'success',
-				'content' => "Your article has been {$action} successfully"
-			]);
 	}
 
 	/**
@@ -148,12 +83,15 @@ class ArticleController extends Controller
 		// Since I could save an article as draft it could be helpful to reset
 		// the dates. This way when I'll publish the article the creation date
 		// won't be in the past
-		if (isset($data['reset_dates']) && $data['reset_dates'])
-		{
+		if (isset($data['reset_dates']) && $data['reset_dates']) {
 			$now = Carbon::now();
 
 			$article->created_at = $now;
 			$article->updated_at = $now;
+		}
+
+		if (isset($data['delete_image']) && $data['delete_image']) {
+			$this->__manageImage($article);
 		}
 
 		$article->update($data);
@@ -179,5 +117,83 @@ class ArticleController extends Controller
 		$article->delete();
 
 		return $this->__redirectToList('deleted');
+	}
+
+	/**
+	 * Redirect to the articles list and notify about the operation result
+	 *
+	 * @param $action
+	 *
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	private function __redirectToList($action)
+	{
+		BlogSidebarComposer::clearSidebarCache();
+
+		return redirect()->route('admin.blog.article.list')
+			->with('notification', [
+				'status' => 'success',
+				'content' => "Your article has been {$action} successfully"
+			]);
+	}
+
+	/**
+	 * @param BlogArticle $article
+	 * @param             $tags
+	 */
+	private function __manageTags(BlogArticle $article, $tags)
+	{
+		$tags = explode(',', $tags);
+		$tagCollection = [];
+
+		foreach ($tags as $tag) {
+			if (!$tag) // Look for empty tags
+			{
+				continue;
+			}
+
+			$tagCollection[] = BlogTag::firstOrCreate(['tag' => $tag])->id;
+		}
+
+		$article->tags()->detach();
+		$article->tags()->attach($tagCollection);
+	}
+
+	/**
+	 * @param BlogArticle  $article
+	 * @param UploadedFile $file
+	 */
+	private function __manageImage(BlogArticle $article, UploadedFile $file = null)
+	{
+		$filePath = storage_path('app/public/blog');
+		$fileName = $article->id . '.jpg';
+		$fullPath = "$filePath/$fileName";
+
+		if (is_null($file)) {
+			@unlink($fullPath);
+
+			$article->image = 0;
+			$article->save();
+
+			return;
+		}
+
+		$image = \Image::make($file);
+
+		// Resize image to 16:9 ration
+		$image->fit(640, 360);
+		$image->save($fullPath, 80);
+
+		// Optimize image to reduce size
+		$process = new Process("/usr/bin/jpegoptim -m80 -q -s $fileName");
+		$process->setWorkingDirectory($filePath);
+		$process->run();
+
+		if ($process->getExitCode() != 0) {
+			// TODO report error
+		}
+
+		$article->image = 1;
+		$article->save();
 	}
 }

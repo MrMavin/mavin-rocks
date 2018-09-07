@@ -88,6 +88,12 @@
                 'name' => 'reset_dates',
                 'value' => 1
             ])
+
+            @include('form.checkbox', [
+                'label' => 'Delete image',
+                'name' => 'delete_image',
+                'value' => 1
+            ])
         @endif
 
         <div class="field is-grouped">
