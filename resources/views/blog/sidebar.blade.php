@@ -4,7 +4,7 @@
         <ul>
             @foreach($categories as $category)
                 <li>
-                    <a href="{{ route('blog.category', $category['id'] . '-' . strtolower($category['name'])) }}" class="category">
+                    <a href="{{ route('blog.category', $category['slug']) }}" class="category">
                         {{ $category['name'] }}
                         <span class="count">
                             ({{ $category['articles_count'] }})
@@ -29,7 +29,7 @@
         <ul>
             @foreach($latest as $article)
                 <li>
-                    <a href="{{ route('blog.article', get_article_url($article)) }}">
+                    <a href="{{ route('blog.article', $article['link']) }}">
                         {{ $article['title'] }}
 
                         <span class="date">

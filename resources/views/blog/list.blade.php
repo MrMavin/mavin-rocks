@@ -26,7 +26,7 @@
                 @foreach($articles as $article)
                     <div class="card articles">
                         @if ($article->image)
-                            <a href="{{ route('blog.article', get_article_url($article)) }}" class="card-image">
+                            <a href="{{ route('blog.article', $article->link) }}" class="card-image">
                                 <figure class="image is-16by9">
                                     <img src="{{ asset('/storage/blog/' . $article->id . '.jpg') }}"
                                          alt="{{ $article->title }}">
@@ -37,7 +37,7 @@
                         <div class="card-content">
                             <div class="media">
                                 <div class="media-content">
-                                    <a href="{{ route('blog.article', get_article_url($article)) }}" class="title">
+                                    <a href="{{ route('blog.article', $article->link) }}" class="title">
                                         {{ $article->title }}
                                     </a>
                                     <hr>

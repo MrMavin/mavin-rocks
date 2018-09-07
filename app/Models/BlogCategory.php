@@ -9,6 +9,7 @@ class BlogCategory extends Model
 	public $timestamps = FALSE;
 	protected $table = 'blog_categories';
 	protected $fillable = ['name'];
+	protected $appends = ['slug'];
 
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -16,5 +17,16 @@ class BlogCategory extends Model
 	public function articles()
 	{
 		return $this->hasMany(BlogArticle::class, 'category_id', 'id');
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getSlugAttribute()
+	{
+		$id = $this->attributes['id'];
+		$name = str_slug($this->attributes['name']);
+
+		return "{$id}-{$name}";
 	}
 }

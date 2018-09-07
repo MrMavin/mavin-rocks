@@ -10,6 +10,7 @@ class BlogArticle extends Model
 	protected $fillable = ['category_id', 'title', 'slug', 'excerpt', 'content', 'published'];
 	protected $with = ['tags', 'category'];
 	protected $casts = ['created_at' => 'date:M j, Y'];
+	protected $appends = ['link'];
 
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -33,6 +34,11 @@ class BlogArticle extends Model
 	public function getCreatedAttribute()
 	{
 		return $this->created_at->diffForHumans();
+	}
+
+	public function getLinkAttribute()
+	{
+		return $this->attributes['id'] . '-' . $this->attributes['slug'];
 	}
 
 	/**
