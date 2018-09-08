@@ -15,7 +15,7 @@ class BlogController extends Controller
 	public function getList()
 	{
 		$articles = BlogArticle::wherePublished(TRUE)
-			->orderByDesc('id')
+			->orderByDesc('created_at')
 			->paginate(3);
 
 		return view('blog.list', ['articles' => $articles]);
@@ -39,7 +39,7 @@ class BlogController extends Controller
 	public function getCategorySearch(BlogCategory $category)
 	{
 		$articles = BlogArticle::wherePublished(TRUE)
-			->orderByDesc('id')
+			->orderByDesc('created_at')
 			->whereCategoryId($category->id)
 			->paginate(3);
 
@@ -54,7 +54,7 @@ class BlogController extends Controller
 	public function getTagSearch(BlogTag $tag)
 	{
 		$articles = BlogArticle::wherePublished(TRUE)
-			->orderByDesc('id')
+			->orderByDesc('created_at')
 			->whereHas('tags', function ($query) use ($tag) {
 				$query->where('id', '=', $tag->id);
 			})
