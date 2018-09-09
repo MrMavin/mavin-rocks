@@ -92,7 +92,7 @@
 						[
 							'icon' => 'fas fa-download',
 							'title' => 'Software',
-							'skills' => '3phpStorm,3Docker,2Vagrant,2Slack,2Postman'
+							'skills' => '3phpStorm,2Vagrant,2Slack,2Postman'
 						],
 						[
 							'icon' => 'fas fa-cubes',
@@ -102,7 +102,7 @@
 						[
 							'icon' => 'fas fa-code-branch',
 							'title' => 'VCS',
-							'skills' => '3GitHub,3Git,2GitLab,1SVN'
+							'skills' => '3Git,3GitHub,2GitLab'
 						]
 					];
 					?>
@@ -136,7 +136,7 @@
 						[
 							'icon' => 'fab fa-js',
 							'title' => 'Javascript',
-							'skills' => '3jQuery,2ES6'
+							'skills' => '3ES6,3jQuery,2React,2Webpack'
 						],
 						[
 							'icon' => 'fas fa-plus-square',
@@ -180,12 +180,12 @@
                         [
 							'icon' => 'fas fa-wrench',
 							'title' => 'DevOps',
-							'skills' => '3Hosting,3Backups,3Deployment,3Maintenance,3Troubleshooting,2Testing'
+							'skills' => '3Docker,3Hosting,3Backups,3Deployment,3Management,2Testing'
 						],
 						[
 							'icon' => 'fas fa-plus-square',
 							'title' => 'Misc',
-							'skills' => '3Terminal,3DigitalOcean,3PGP,2AWS,2Cryptocurrencies,2Tor'
+							'skills' => '3Terminal,3DigitalOcean,3PGP,2AWS,2Blockchain,2Tor'
 						]
 					];
 					?>
