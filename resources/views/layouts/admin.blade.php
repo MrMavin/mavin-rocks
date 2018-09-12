@@ -11,20 +11,8 @@
     @include('partials.head')
 </head>
 <body class="@yield('page')">
-<header class="header">
-    @include('partials.admin.header')
-</header>
 
-<div class="container">
-    <div class="columns">
-        <div class="column is-3">
-            @includeWhen(is_active('admin.blog'), 'partials.admin.blog')
-        </div>
-        <div class="column is-9">
-            @yield('content')
-        </div>
-    </div>
-</div>
+<div id="root"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.10.0/trumbowyg.min.js" integrity="sha256-VBPq2huFnLqr2pLznEQnmgYAvJ9FnPJnd7yCzDAJi4c=" crossorigin="anonymous"></script>
@@ -36,7 +24,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.10.0/plugins/preformatted/trumbowyg.preformatted.min.js" integrity="sha256-4INuueXnOHpyb0f+9/jUlenk9eUK84m7CTXQQrTrmOM=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.10.0/plugins/upload/trumbowyg.upload.min.js" integrity="sha256-cfciNQJ5K+8B8vXmEbN3Q42fqtuJHPiExuAu94EJyy4=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.6/jquery.tagsinput.min.js" integrity="sha256-IkytFcY/Z/rLvRE9rYyZvybaitAWr1y2jS/+eyxXky8=" crossorigin="anonymous"></script>
-<script src="{{ asset('js/admin/admin.js') }}"></script>
+<script src="{{ asset('js/admin/Admin.js') }}"></script>
 @stack('scripts')
 </body>
 </html>
