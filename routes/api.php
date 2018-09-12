@@ -12,3 +12,10 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::group(['namespace' => 'Admin',
+              'prefix' => 'admin'], function () {
+
+	Route::get('articles', 'AdminAPI@getArticles');
+	Route::get('article/{article}', 'AdminAPI@getArticle');
+});

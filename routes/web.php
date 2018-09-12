@@ -20,7 +20,7 @@ Route::group(['as' => 'page.',
 });
 
 Route::group(['as' => 'webhooks.',
-	          'namespace' => 'WebHooks',
+              'namespace' => 'WebHooks',
               'prefix' => 'webhooks'], function () {
 	Route::post('telegram/{token}', 'Telegram@postWebHook')->name('telegram');
 	Route::post('github', 'GitHub@postWebHook')->name('github');
@@ -55,7 +55,11 @@ Route::group(['as' => 'admin.',
               'prefix' => 'admin',
               'middleware' => 'auth'], function () {
 
-	Route::get('/', 'AdminController@getIndex')->name('index');
+	Route::view('/{path?}', 'layouts.admin')
+		->where('path', '.*')
+		->name('index');
+
+	/*Route::get('/', 'AdminController@getIndex')->name('index');
 
 	Route::group(['as' => 'blog.',
 	              'namespace' => 'Blog',
@@ -71,5 +75,5 @@ Route::group(['as' => 'admin.',
 			Route::post('/{article}/edit', 'ArticleController@postEdit');
 			Route::post('/{article}/delete', 'ArticleController@postDelete')->name('delete');
 		});
-	});
+	});*/
 });

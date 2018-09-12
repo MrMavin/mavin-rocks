@@ -10,7 +10,7 @@ class BlogArticle extends Model
 	protected $fillable = ['category_id', 'title', 'slug', 'excerpt', 'content', 'published'];
 	protected $with = ['tags', 'category'];
 	protected $casts = ['created_at' => 'date:M j, Y'];
-	protected $appends = ['link'];
+	protected $appends = ['link', 'created'];
 
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
