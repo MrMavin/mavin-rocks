@@ -38,12 +38,38 @@ class AdminManageArticleRequest extends FormRequest
 	{
 		return [
 			'category_id' => 'nullable|exists:blog_categories,id',
-			'image' => 'nullable|image',
+			'image' => 'sometimes',
 			'title' => 'required|max:255',
+			'slug' => 'required_if:published,1|max:255',
 			'content' => 'required|max:65535',
 			'excerpt' => 'required|max:65535',
-			'published' => 'boolean',
-			'tags' => 'required_if:published,1|max:255'
+			'tags' => 'required_if:published,1|max:255',
+			'published' => 'sometimes|boolean',
+			'reset_dates' => 'sometimes|boolean',
+			'delete_image' => 'sometimes|boolean',
 		];
+	}
+
+	/**
+	 * Configure the validator instance.
+	 *
+	 * @param  \Illuminate\Validation\Validator  $validator
+	 * @return void
+	 */
+	public function withValidator($validator)
+	{
+		$data = $validator->getData();
+
+		// sometimes
+		if (isset($data['image'])){
+			$image = $data['image'];
+
+			// nullable
+			if ($image != false){
+				$validator->addRules([
+					'image' => 'image'
+				]);
+			}
+		}
 	}
 }

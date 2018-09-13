@@ -18,4 +18,6 @@ Route::group(['namespace' => 'Admin',
 
 	Route::get('articles', 'AdminAPI@getArticles');
 	Route::get('article/{article}', 'AdminAPI@getArticle');
+	Route::post('article/{article}', 'AdminAPI@postArticle');
+	Route::get('categories', 'AdminAPI@getCategories');
 });

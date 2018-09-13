@@ -44,9 +44,7 @@ class ArticleList extends Component{
             </p>
             <small className='is-marginless'>
               <i className="fas fa-tags fa-sm" />&nbsp;
-              {article.tags.map(tag => {
-                return tag.tag;
-              }).join(', ')}&nbsp;
+              {article.tags}&nbsp;
               <i className="fas fa-list fa-sm" />&nbsp;
               {article.category.name}
             </small>

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import Loading from "../components/Loading";
-import TextElement from "../components/form/TextElement";
+import ArticleEditor from "../components/ArticleEditor";
 
-class ArticleEdit extends Component{
+class ArticleEdit extends Component {
   constructor(props) {
     super(props);
 
@@ -27,10 +27,7 @@ class ArticleEdit extends Component{
     if (Object.keys(this.state.article) <= 0)
       return <Loading/>;
 
-    return <div>
-      <TextElement type="text" label="Title" icon="fas fa-pencil-alt" />
-      {console.log(this.state.article)}
-    </div>
+    return <ArticleEditor editing={true} article={this.state.article} />
   }
 }
 

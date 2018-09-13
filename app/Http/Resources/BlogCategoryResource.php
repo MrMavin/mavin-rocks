@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class BlogArticleResource extends JsonResource
+class BlogCategoryResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,14 +14,6 @@ class BlogArticleResource extends JsonResource
      */
     public function toArray($request)
     {
-        $array = parent::toArray($request);
-
-	    $tags = '';
-	    foreach ($array['tags'] as $tag) {
-		    $tags .= $tag['tag'] . ',';
-	    }
-	    $array['tags'] = trim($tags, ',');
-
-	    return $array;
+        return parent::toArray($request);
     }
 }
