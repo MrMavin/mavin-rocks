@@ -19,12 +19,9 @@ In the end, I was successful.
 After a bit I've learned how to keep my house in __order__,
 how to cook for myself and
 how to take my __responsibilities__.
-When you're on your own, nobody is going to pay the bills for you.
-It was a very good chance to grow up and become a man.
 
-Something that helped me during this period was reading about __personal growth__.
-Things like __Organize__ your time, __plan__ the weeks, __define__ smart objectives
-and __change__ some habits to __achieve__ your goals.
+I love to __organize__ my time, __plan__ the weeks and __define__ quarterly goals.
+I've got __objectives__ that I want to __achieve__.
 
 ### Organization and planning
 
@@ -46,8 +43,7 @@ I would like to start.
 ### Learning
 
 For me, growing up is strictly correlated to learning.
-I'm not talking about learning subjects at school.
-I'm talking about learning as a __tool__ to discover.
+Learning as a __tool__ to discover.
 Discover places, people, technologies, activities, books...
 I love to know new things.
 It helps me to get new __ideas__,
@@ -56,8 +52,7 @@ to try new __experiences__.
 
 ### Everyday life
 
-This section could keep me busy for several hours.
-In a few words, I'm very __open-minded__,
+I'm very __open-minded__,
 I like to know about what is __different__ from me,
 I don't have __preconceptions__ and if
 I have something to say you will know about it.
@@ -75,3 +70,7 @@ I'm not very active in the social world. You're still free to have a look at my 
 <a target="_blank" href="https://twitter.com/MrMavin_"><i class="fab fa-twitter"></i> Twitter</a>
 
 <a target="_blank" href="https://www.instagram.com/mrmavin_/"><i class="fab fa-instagram"></i> Instagram</a>
+
+<a target="_blank" href="https://t.me/Mavin"><i class="fab fa-telegram-plane"></i> Telegram</a>
+
+<span><i class="fas fa-envelope"></i> me(at)mavin(dot)rocks</span>
