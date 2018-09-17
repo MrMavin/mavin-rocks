@@ -30,7 +30,7 @@
 
         @if (config('services.matomo.url'))
             <img src="{{ config('services.matomo.url') }}/piwik.php?idsite=1&amp;rec=1&amp;rand={{ microtime(true) }}"
-                 style="border:0" alt="" />
+                 style="display: none" alt="" />
         @endif
     </div>
 </div>
