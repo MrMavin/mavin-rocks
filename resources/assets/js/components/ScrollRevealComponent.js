@@ -3,13 +3,13 @@
 const ScrollRevealComponent = {
   scrollReveal: ScrollReveal({
     origin: 'top',
-    distance: '2rem',
+    distance: '3rem',
     duration: 500,
     delay: 100,
     easing: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
     viewFactor: 0.2,
     viewOffset: {
-      top: 50,
+      top: 25,
       right: 0,
       bottom: 0,
       left: 0,
