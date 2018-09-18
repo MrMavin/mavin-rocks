@@ -13,187 +13,186 @@ use Symfony\Component\Process\Process;
 
 class ArticleController extends Controller
 {
-	/**
-	 * @return \Illuminate\View\View
-	 */
-	public function getList()
-	{
-		$articles = BlogArticle::orderByDesc('id')->paginate(10);
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function getList()
+    {
+        $articles = BlogArticle::orderByDesc('id')->paginate(10);
 
-		return view('admin.article.list', ['articles' => $articles]);
-	}
+        return view('admin.article.list', ['articles' => $articles]);
+    }
 
-	/**
-	 * Create a new article
-	 *
-	 * @return \Illuminate\View\View
-	 */
-	public function getCreate()
-	{
-		session()->ageFlashData();
+    /**
+     * Create a new article
+     *
+     * @return \Illuminate\View\View
+     */
+    public function getCreate()
+    {
+        session()->ageFlashData();
 
-		return view('admin.article.manage', ['edit' => FALSE]);
-	}
+        return view('admin.article.manage', ['edit' => false]);
+    }
 
-	/**
-	 * @param AdminManageArticleRequest $manageArticleRequest
-	 *
-	 * @return \Illuminate\Http\RedirectResponse
-	 */
-	public function postCreate(AdminManageArticleRequest $manageArticleRequest)
-	{
-		$data = $manageArticleRequest->all();
-		$data['slug'] = str_slug($data['title']);
+    /**
+     * @param AdminManageArticleRequest $manageArticleRequest
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function postCreate(AdminManageArticleRequest $manageArticleRequest)
+    {
+        $data = $manageArticleRequest->all();
+        $data['slug'] = str_slug($data['title']);
 
-		$article = BlogArticle::create($data);
+        $article = BlogArticle::create($data);
 
-		$this->__manageTags($article, $data['tags']);
+        $this->__manageTags($article, $data['tags']);
 
-		if ($manageArticleRequest->hasFile('image')) {
-			$this->__manageImage($article, $manageArticleRequest->file('image'));
-		}
+        if ($manageArticleRequest->hasFile('image')) {
+            $this->__manageImage($article, $manageArticleRequest->file('image'));
+        }
 
-		return $this->__redirectToList('created');
-	}
+        return $this->__redirectToList('created');
+    }
 
-	/**
-	 * @param BlogArticle $article
-	 *
-	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-	 */
-	public function getEdit(BlogArticle $article)
-	{
-		// Flash article data into session
-		session()->flashInput($article->toFormattedArray());
+    /**
+     * @param BlogArticle $article
+     * @param             $tags
+     */
+    private function __manageTags(BlogArticle $article, $tags)
+    {
+        $tags = explode(',', $tags);
+        $tagCollection = [];
 
-		return view('admin.article.manage', ['edit' => TRUE]);
-	}
+        foreach ($tags as $tag) {
+            if (! $tag) // Look for empty tags
+            {
+                continue;
+            }
 
-	/**
-	 * @param AdminManageArticleRequest $manageArticleRequest
-	 * @param BlogArticle               $article
-	 *
-	 * @return \Illuminate\Http\RedirectResponse
-	 */
-	public function postEdit(AdminManageArticleRequest $manageArticleRequest, BlogArticle $article)
-	{
-		$data = $manageArticleRequest->all();
-		$data['published'] = isset($data['published']) ? $data['published'] : FALSE;
+            $tagCollection[] = BlogTag::firstOrCreate(['tag' => $tag])->id;
+        }
 
-		// Since I could save an article as draft it could be helpful to reset
-		// the dates. This way when I'll publish the article the creation date
-		// won't be in the past
-		if (isset($data['reset_dates']) && $data['reset_dates']) {
-			$now = Carbon::now();
+        $article->tags()->detach();
+        $article->tags()->attach($tagCollection);
+    }
 
-			$article->created_at = $now;
-			$article->updated_at = $now;
-		}
+    /**
+     * @param BlogArticle $article
+     * @param UploadedFile $file
+     */
+    private function __manageImage(BlogArticle $article, UploadedFile $file = null)
+    {
+        $filePath = storage_path('app/public/blog');
+        $fileName = $article->id.'.jpg';
+        $fullPath = "$filePath/$fileName";
 
-		if (isset($data['delete_image']) && $data['delete_image']) {
-			$this->__manageImage($article);
-		}
+        if (is_null($file)) {
+            @unlink($fullPath);
 
-		$article->update($data);
+            $article->image = 0;
+            $article->save();
 
-		$this->__manageTags($article, $data['tags']);
+            return;
+        }
 
-		if ($manageArticleRequest->hasFile('image')) {
-			$this->__manageImage($article, $manageArticleRequest->file('image'));
-		}
+        $image = \Image::make($file);
 
-		return $this->__redirectToList('modified');
-	}
+        // Resize image to 16:9 ration
+        $image->fit(640, 360);
+        $image->save($fullPath, 80);
 
-	/**
-	 * @param BlogArticle $article
-	 *
-	 * @return \Illuminate\Http\RedirectResponse
-	 * @throws \Exception
-	 */
-	public function postDelete(BlogArticle $article)
-	{
-		// Exception not handled because impossible in this context
-		$article->delete();
+        // Optimize image to reduce size
+        $process = new Process("/usr/bin/jpegoptim -m80 -q -s $fileName");
+        $process->setWorkingDirectory($filePath);
+        $process->run();
 
-		return $this->__redirectToList('deleted');
-	}
+        if ($process->getExitCode() != 0) {
+            // TODO report error
+        }
 
-	/**
-	 * Redirect to the articles list and notify about the operation result
-	 *
-	 * @param $action
-	 *
-	 * @return \Illuminate\Http\RedirectResponse
-	 */
-	private function __redirectToList($action)
-	{
-		BlogSidebarComposer::clearSidebarCache();
+        $article->image = 1;
+        $article->save();
+    }
 
-		return redirect()->route('admin.blog.article.list')
-			->with('notification', [
-				'status' => 'success',
-				'content' => "Your article has been {$action} successfully"
-			]);
-	}
+    /**
+     * Redirect to the articles list and notify about the operation result
+     *
+     * @param $action
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    private function __redirectToList($action)
+    {
+        BlogSidebarComposer::clearSidebarCache();
 
-	/**
-	 * @param BlogArticle $article
-	 * @param             $tags
-	 */
-	private function __manageTags(BlogArticle $article, $tags)
-	{
-		$tags = explode(',', $tags);
-		$tagCollection = [];
+        return redirect()->route('admin.blog.article.list')->with('notification', [
+            'status'  => 'success',
+            'content' => "Your article has been {$action} successfully",
+        ]);
+    }
 
-		foreach ($tags as $tag) {
-			if (!$tag) // Look for empty tags
-			{
-				continue;
-			}
+    /**
+     * @param BlogArticle $article
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getEdit(BlogArticle $article)
+    {
+        // Flash article data into session
+        session()->flashInput($article->toFormattedArray());
 
-			$tagCollection[] = BlogTag::firstOrCreate(['tag' => $tag])->id;
-		}
+        return view('admin.article.manage', ['edit' => true]);
+    }
 
-		$article->tags()->detach();
-		$article->tags()->attach($tagCollection);
-	}
+    /**
+     * @param AdminManageArticleRequest $manageArticleRequest
+     * @param BlogArticle $article
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function postEdit(AdminManageArticleRequest $manageArticleRequest, BlogArticle $article)
+    {
+        $data = $manageArticleRequest->all();
+        $data['published'] = isset($data['published']) ? $data['published'] : false;
 
-	/**
-	 * @param BlogArticle  $article
-	 * @param UploadedFile $file
-	 */
-	private function __manageImage(BlogArticle $article, UploadedFile $file = null)
-	{
-		$filePath = storage_path('app/public/blog');
-		$fileName = $article->id . '.jpg';
-		$fullPath = "$filePath/$fileName";
+        // Since I could save an article as draft it could be helpful to reset
+        // the dates. This way when I'll publish the article the creation date
+        // won't be in the past
+        if (isset($data['reset_dates']) && $data['reset_dates']) {
+            $now = Carbon::now();
 
-		if (is_null($file)) {
-			@unlink($fullPath);
+            $article->created_at = $now;
+            $article->updated_at = $now;
+        }
 
-			$article->image = 0;
-			$article->save();
+        if (isset($data['delete_image']) && $data['delete_image']) {
+            $this->__manageImage($article);
+        }
 
-			return;
-		}
+        $article->update($data);
 
-		$image = \Image::make($file);
+        $this->__manageTags($article, $data['tags']);
 
-		// Resize image to 16:9 ration
-		$image->fit(640, 360);
-		$image->save($fullPath, 80);
+        if ($manageArticleRequest->hasFile('image')) {
+            $this->__manageImage($article, $manageArticleRequest->file('image'));
+        }
 
-		// Optimize image to reduce size
-		$process = new Process("/usr/bin/jpegoptim -m80 -q -s $fileName");
-		$process->setWorkingDirectory($filePath);
-		$process->run();
+        return $this->__redirectToList('modified');
+    }
 
-		if ($process->getExitCode() != 0) {
-			// TODO report error
-		}
+    /**
+     * @param BlogArticle $article
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+    public function postDelete(BlogArticle $article)
+    {
+        // Exception not handled because impossible in this context
+        $article->delete();
 
-		$article->image = 1;
-		$article->save();
-	}
+        return $this->__redirectToList('deleted');
+    }
 }

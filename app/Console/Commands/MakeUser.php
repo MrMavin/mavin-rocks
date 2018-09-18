@@ -7,53 +7,54 @@ use Illuminate\Console\Command;
 
 class MakeUser extends Command
 {
-	/**
-	 * The name and signature of the console command.
-	 *
-	 * @var string
-	 */
-	protected $signature = 'make:user';
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'make:user';
 
-	/**
-	 * Create a new command instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		parent::__construct();
-	}
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
-	/**
-	 * Execute the console command.
-	 *
-	 * @return mixed
-	 */
-	public function handle()
-	{
-		$email = $this->ask('Please provide an email address');
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function handle()
+    {
+        $email = $this->ask('Please provide an email address');
 
-		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-			$this->error("You didn't provide a valid email address");
-			return;
-		}
+        if (! filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $this->error("You didn't provide a valid email address");
 
-		$user = User::whereEmail($email)->first();
+            return;
+        }
 
-		if ($user) {
-			$this->error('User already exists');
+        $user = User::whereEmail($email)->first();
 
-			return;
-		}
+        if ($user) {
+            $this->error('User already exists');
 
-		if ($this->confirm("Do you wish to create an account named {$email}?")) {
-			User::create([
-				'email' => $email
-			]);
+            return;
+        }
 
-			$this->info("Your account has been saved successfully");
-		}
+        if ($this->confirm("Do you wish to create an account named {$email}?")) {
+            User::create([
+                             'email' => $email,
+                         ]);
 
-		return;
-	}
+            $this->info("Your account has been saved successfully");
+        }
+
+        return;
+    }
 }

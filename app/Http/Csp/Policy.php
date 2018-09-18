@@ -4,25 +4,23 @@ namespace App\Http\Csp;
 
 use Spatie\Csp\Directive;
 use Spatie\Csp\Policies\Basic;
-use Spatie\Csp\Value;
 
 class Policy extends Basic
 {
-	/**
-	 * @throws \Spatie\Csp\Exceptions\InvalidDirective
-	 */
-	public function configure()
-	{
-		parent::configure();
+    /**
+     * @throws \Spatie\Csp\Exceptions\InvalidDirective
+     */
+    public function configure()
+    {
+        parent::configure();
 
-		$this
-			->addDirective(Directive::SCRIPT, 'https://cdnjs.cloudflare.com')
-			->addDirective(Directive::STYLE, 'https://cdnjs.cloudflare.com')
-			->addDirective(Directive::STYLE, 'https://use.fontawesome.com')
-			->addDirective(Directive::STYLE, 'https://fonts.googleapis.com')
-			->addDirective(Directive::FONT, 'https://use.fontawesome.com')
-			->addDirective(Directive::FONT, 'https://fonts.gstatic.com');
+        $this->addDirective(Directive::SCRIPT, 'https://cdnjs.cloudflare.com');
+        $this->addDirective(Directive::STYLE, 'https://cdnjs.cloudflare.com');
+        $this->addDirective(Directive::STYLE, 'https://use.fontawesome.com');
+        $this->addDirective(Directive::STYLE, 'https://fonts.googleapis.com');
+        $this->addDirective(Directive::FONT, 'https://use.fontawesome.com');
+        $this->addDirective(Directive::FONT, 'https://fonts.gstatic.com');
 
-		$this->reportOnly();
-	}
+        $this->reportOnly();
+    }
 }

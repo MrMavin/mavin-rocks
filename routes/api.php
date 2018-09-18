@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,11 +11,13 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::group(['namespace' => 'Admin',
-              'prefix' => 'admin'], function () {
+Route::group([
+                 'namespace' => 'Admin',
+                 'prefix'    => 'admin',
+             ], function () {
 
-	Route::get('articles', 'AdminAPI@getArticles');
-	Route::get('article/{article}', 'AdminAPI@getArticle');
-	Route::post('article/{article}', 'AdminAPI@postArticle');
-	Route::get('categories', 'AdminAPI@getCategories');
+    Route::get('articles', 'AdminAPI@getArticles');
+    Route::get('article/{article}', 'AdminAPI@getArticle');
+    Route::post('article/{article}', 'AdminAPI@postArticle');
+    Route::get('categories', 'AdminAPI@getCategories');
 });

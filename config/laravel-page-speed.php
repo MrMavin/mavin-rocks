@@ -22,7 +22,7 @@ return [
     | You can use * as wildcard.
     |
     */
-    'skip' => [
+    'skip'   => [
         '*.xml',
         '*.less',
         '*.pdf',
@@ -54,7 +54,7 @@ return [
         '*.iso',
         '*.flv',
         '*.m4v',
-        '*.torrent'
+        '*.torrent',
     ],
 
 ];

@@ -6,28 +6,30 @@ use Illuminate\Database\Eloquent\Model;
 
 class BlogTag extends Model
 {
-	public $timestamps = FALSE;
-	protected $table = 'blog_tags';
-	protected $fillable = ['tag'];
-	protected $appends = ['slug'];
+    public $timestamps = false;
 
-	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-	 */
-	public function articles()
-	{
-		return $this->belongsToMany(BlogArticle::class)
-			->where('published', '=', TRUE);
-	}
+    protected $table = 'blog_tags';
 
-	/**
-	 * @return string
-	 */
-	public function getSlugAttribute()
-	{
-		$id = $this->attributes['id'];
-		$name = str_slug($this->attributes['tag']);
+    protected $fillable = ['tag'];
 
-		return "{$id}-{$name}";
-	}
+    protected $appends = ['slug'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function articles()
+    {
+        return $this->belongsToMany(BlogArticle::class)->where('published', '=', true);
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlugAttribute()
+    {
+        $id = $this->attributes['id'];
+        $name = str_slug($this->attributes['tag']);
+
+        return "{$id}-{$name}";
+    }
 }

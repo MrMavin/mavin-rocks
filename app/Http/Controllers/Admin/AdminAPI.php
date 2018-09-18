@@ -11,27 +11,32 @@ use App\Models\BlogCategory;
 
 class AdminAPI extends Controller
 {
-	public function getArticles()
-	{
-		$articles = BlogArticle::with(['tags', 'category'])->get();
-		return BlogArticleResource::collection($articles);
-	}
+    public function getArticles()
+    {
+        $articles = BlogArticle::with([
+                                          'tags',
+                                          'category',
+                                      ])->get();
 
-	public function getArticle(BlogArticle $article)
-	{
-		return new BlogArticleResource($article);
-	}
+        return BlogArticleResource::collection($articles);
+    }
 
-	public function postArticle(AdminManageArticleRequest $articleRequest, BlogArticle $article)
-	{
-		$data = $articleRequest->only($article->getFillable());
+    public function getArticle(BlogArticle $article)
+    {
+        return new BlogArticleResource($article);
+    }
 
-		$article->update($data);
-	}
+    public function postArticle(AdminManageArticleRequest $articleRequest, BlogArticle $article)
+    {
+        $data = $articleRequest->only($article->getFillable());
 
-	public function getCategories()
-	{
-		$categories = BlogCategory::orderBy('position')->get();
-		return BlogCategoryResource::collection($categories);
-	}
+        $article->update($data);
+    }
+
+    public function getCategories()
+    {
+        $categories = BlogCategory::orderBy('position')->get();
+
+        return BlogCategoryResource::collection($categories);
+    }
 }

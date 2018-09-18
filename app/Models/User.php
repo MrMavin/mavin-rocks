@@ -8,35 +8,36 @@ use Telegram\Bot\Objects\Message;
 
 class User extends Authenticatable
 {
-	use Notifiable;
+    use Notifiable;
 
-	public $timestamps = FALSE;
-	protected $fillable = ['email'];
+    public $timestamps = false;
 
-	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
-	 */
-	public function articles()
-	{
-		return $this->hasMany(BlogArticle::class);
-	}
+    protected $fillable = ['email'];
 
-	/**
-	 * @param $message
-	 *
-	 * @return bool|Message
-	 */
-	public function sendTelegramMessage($message)
-	{
-		if ($this->telegram_chat_id == 0) {
-			return FALSE;
-		}
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function articles()
+    {
+        return $this->hasMany(BlogArticle::class);
+    }
 
-		$telegram = app('telegram');
+    /**
+     * @param $message
+     *
+     * @return bool|Message
+     */
+    public function sendTelegramMessage($message)
+    {
+        if ($this->telegram_chat_id == 0) {
+            return false;
+        }
 
-		return $telegram->sendMessage([
-			'chat_id' => $this->telegram_chat_id,
-			'text' => $message
-		]);
-	}
+        $telegram = app('telegram');
+
+        return $telegram->sendMessage([
+                                          'chat_id' => $this->telegram_chat_id,
+                                          'text'    => $message,
+                                      ]);
+    }
 }

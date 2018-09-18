@@ -6,11 +6,11 @@ use App\Http\Controllers\Controller;
 
 class AboutController extends Controller
 {
-	/**
-	 * @return \Illuminate\View\View
-	 */
-	public function getAbout()
-	{
-		return view('pages.about');
-	}
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function getAbout()
+    {
+        return view('pages.about');
+    }
 }
