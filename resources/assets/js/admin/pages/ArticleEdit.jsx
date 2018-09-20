@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Loading from "../components/Loading";
 import ArticleEditor from "../components/ArticleEditor";
+import {getArticle} from "../util/Axios";
 
 export default class ArticleEdit extends Component {
   constructor(props) {
@@ -14,13 +15,11 @@ export default class ArticleEdit extends Component {
   componentDidMount() {
     const articleId = this.props.match.params.id;
 
-    fetch('/api/admin/article/' + articleId)
-      .then(r => r.json())
-      .then(article => {
+    getArticle(articleId).then(article => {
         this.setState({
-          article: article.data
+            article: article
         });
-      });
+    });
   }
 
   render() {

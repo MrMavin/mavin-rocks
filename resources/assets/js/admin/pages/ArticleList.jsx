@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Loading from "../components/Loading";
 import {NavLink} from 'react-router-dom';
-import Axios from "axios";
+import {deleteArticle, getArticles} from "../util/Axios";
 
 export default class ArticleList extends Component {
     constructor(props) {
@@ -15,13 +15,11 @@ export default class ArticleList extends Component {
     }
 
     componentDidMount() {
-        fetch('/api/admin/articles')
-            .then(r => r.json())
-            .then(articles => {
-                this.setState({
-                    articles: articles.data
-                });
+        getArticles().then(articles => {
+            this.setState({
+                articles: articles
             });
+        });
     }
 
     handleDelete(e) {
@@ -29,18 +27,14 @@ export default class ArticleList extends Component {
 
         const element = e.target;
 
-        if (element.innerText !== 'sure?'){
+        if (element.innerText !== 'sure?') {
             element.innerText = 'sure?';
             return;
         }
 
         const articleId = e.target.dataset.article;
 
-        Axios.post(`/api/admin/article/${articleId}/delete`, [])
-            .then(() => {
-                this.componentDidMount()
-            })
-            .catch(e => {});
+        deleteArticle(articleId).then(r => this.componentDidMount());
     }
 
     render() {

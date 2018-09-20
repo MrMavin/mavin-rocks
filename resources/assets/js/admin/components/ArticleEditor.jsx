@@ -7,7 +7,7 @@ import TextAreaElement from "./form/TextAreaElement";
 import CheckBoxElement from "./form/CheckBoxElement";
 import Trumbowyg from "./form/Trumbowyg";
 import FileElement from "./form/FileElement";
-import Axios from "axios";
+import {createArticle, getCategories, modifyArticle} from "../util/Axios";
 
 export default class ArticleEditor extends Component {
     constructor(props) {
@@ -30,13 +30,11 @@ export default class ArticleEditor extends Component {
     }
 
     componentDidMount() {
-        fetch('/api/admin/categories')
-            .then(r => r.json())
-            .then(categories => {
-                this.setState({
-                    categories: categories.data
-                });
+        getCategories().then(categories => {
+            this.setState({
+                categories: categories
             });
+        });
     }
 
     handleUpdate(e) {
@@ -67,50 +65,30 @@ export default class ArticleEditor extends Component {
             processing: true
         });
 
-        Axios.defaults.headers['Content-Type'] = 'multipart/form-data';
-
         let data = new FormData();
 
         for (const [key, value] of Object.entries(this.state.article)) {
             data.append(key, value);
         }
 
-        const apiPath = this.props.editing ?
-            '/api/admin/article/' + this.state.article.id :
-            '/api/admin/article/create';
+        const result = this.props.editing ? modifyArticle(this.state.article.id, data) : createArticle(data);
 
-        Axios.post(apiPath, data)
-            .then(r => {
-                this.setState({
-                    errors: {},
-                    processing: false
-                });
+        result.then(r => {
+            console.log(r);
 
-                if (!this.props.editing && r.data.success) {
-                    const articleId = r.data.article;
-
-                    this.setState({
-                        redirect: '/admin/article-edit/' + articleId
-                    });
-                }
-            })
-            .catch(e => {
-                const response = e.response;
-
-                if (response.status === 422) {
-                    this.setState({
-                        errors: response.data.errors
-                    })
-                }else{
-                    this.setState({
-                        errors: {}
-                    })
-                }
-
-                this.setState({
-                    processing: false
-                });
+            this.setState({
+                processing: false,
+                errors: r.errors
             });
+
+            if (!this.props.editing && r.success){
+                const articleId = r.data.article;
+
+                this.setState({
+                    redirect: '/admin/article-edit/' + articleId
+                });
+            }
+        });
     }
 
     render() {
@@ -162,7 +140,7 @@ export default class ArticleEditor extends Component {
             <SelectElement label={"Category"}
                            name={"category_id"}
                            options={this.state.categories}
-                           value={this.state.article.category_id || ''}
+                           value={this.state.article.category_id}
                            error={this.state.errors.category_id}
                            icon={"fas fa-list"}
                            allowNull={"true"}

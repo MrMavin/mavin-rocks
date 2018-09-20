@@ -24,6 +24,10 @@ class BlogArticleResource extends JsonResource
             $array['tags'] = trim($tags, ',');
         }
 
+        if ($array['category_id'] == null){
+            $array['category_id'] = "";
+        }
+
         return $array;
     }
 }

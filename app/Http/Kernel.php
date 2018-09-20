@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\APIAuthMiddleware;
 use App\Http\Middleware\EncryptCookies;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\RedirectIfNotAuthenticated;
@@ -55,6 +56,7 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
+            APIAuthMiddleware::class,
             'throttle:60,1',
             'bindings',
         ],

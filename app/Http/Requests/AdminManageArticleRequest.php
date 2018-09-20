@@ -60,11 +60,6 @@ class AdminManageArticleRequest extends FormRequest
     public function withValidator($validator)
     {
         $data = $validator->getData();
-\Log::info("data", $data);
-
-        if ($data['category_id'] == 'null'){
-            dd("LOL");
-        }
 
         // sometimes
         if (isset($data['image'])) {
