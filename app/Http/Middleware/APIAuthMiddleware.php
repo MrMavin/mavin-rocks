@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
 use Closure;
 
 class APIAuthMiddleware
@@ -16,15 +17,29 @@ class APIAuthMiddleware
     public function handle($request, Closure $next)
     {
         $apiKey = $request->header('Authorization');
+
+
         $user = \Auth::user();
 
-        if (!$user){
-            return abort(401, "User not authenticated");
+        if ($user){
+            if ($user->getApiKey() !== $apiKey){
+                return abort(401, "API Key does not match");
+            }
+        }else{
+            $users = User::all();
+
+            foreach($users as $user){
+                if ($user->getApiKey() === $apiKey){
+                    \Auth::login($user);
+                    break;
+                }
+            }
+
+            if (!\Auth::check()){
+                return abort(401, "User not found");
+            }
         }
 
-        if ($user->getApiKey() !== $apiKey){
-            return abort(401, "API key is wrong");
-        }
 
         return $next($request);
     }
