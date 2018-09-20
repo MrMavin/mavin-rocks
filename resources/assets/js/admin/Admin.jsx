@@ -23,5 +23,4 @@ class Admin extends Component {
 
 export default Admin;
 
-const domContainer = document.querySelector('#root');
-ReactDOM.render(<Admin/>, domContainer);
+ReactDOM.render(<Admin/>, document.querySelector('#root'));

@@ -57,24 +57,4 @@ class BlogArticle extends Model
     {
         return $this->attributes['id'].'-'.$this->attributes['slug'];
     }
-
-    /**
-     * Transform the Article object in a formatted array
-     * that could be flashed in the session and loaded
-     * by the form components
-     *
-     * @return array
-     */
-    public function toFormattedArray()
-    {
-        $data = $this->toArray();
-
-        $tags = '';
-        foreach ($data['tags'] as $tag) {
-            $tags .= $tag['tag'].',';
-        }
-        $data['tags'] = trim($tags, ',');
-
-        return $data;
-    }
 }

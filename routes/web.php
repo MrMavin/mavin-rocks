@@ -66,21 +66,4 @@ Route::group([
              ], function () {
 
     Route::view('/{path?}', 'layouts.admin')->where('path', '.*')->name('index');
-    /*Route::get('/', 'AdminController@getIndex')->name('index');
-
-    Route::group(['as' => 'blog.',
-                  'namespace' => 'Blog',
-                  'prefix' => 'blog'], function () {
-
-        Route::group(['as' => 'article.',
-                      'prefix' => 'article'], function () {
-
-            Route::get('/list', 'ArticleController@getList')->name('list');
-            Route::get('/create', 'ArticleController@getCreate')->name('create');
-            Route::post('/create', 'ArticleController@postCreate');
-            Route::get('/{article}/edit', 'ArticleController@getEdit')->name('edit');
-            Route::post('/{article}/edit', 'ArticleController@postEdit');
-            Route::post('/{article}/delete', 'ArticleController@postDelete')->name('delete');
-        });
-    });*/
 });

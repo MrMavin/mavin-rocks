@@ -18,6 +18,8 @@ Route::group([
 
     Route::get('articles', 'AdminAPI@getArticles');
     Route::get('article/{article}', 'AdminAPI@getArticle');
+    Route::post('article/create', 'AdminAPI@postArticleCreate');
     Route::post('article/{article}', 'AdminAPI@postArticle');
+    Route::post('article/{article}/delete', 'AdminAPI@postArticleDelete');
     Route::get('categories', 'AdminAPI@getCategories');
 });

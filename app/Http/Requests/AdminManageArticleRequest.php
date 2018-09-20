@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Validation\Concerns\ValidatesAttributes;
 
 class AdminManageArticleRequest extends FormRequest
@@ -40,7 +41,7 @@ class AdminManageArticleRequest extends FormRequest
             'category_id'  => 'nullable|exists:blog_categories,id',
             'image'        => 'sometimes',
             'title'        => 'required|max:255',
-            'slug'         => 'required_if:published,1|max:255',
+            'slug'         => 'sometimes|max:255',
             'content'      => 'required|max:65535',
             'excerpt'      => 'required|max:65535',
             'tags'         => 'required_if:published,1|max:255',
@@ -59,13 +60,18 @@ class AdminManageArticleRequest extends FormRequest
     public function withValidator($validator)
     {
         $data = $validator->getData();
+\Log::info("data", $data);
+
+        if ($data['category_id'] == 'null'){
+            dd("LOL");
+        }
 
         // sometimes
         if (isset($data['image'])) {
             $image = $data['image'];
 
             // nullable
-            if ($image != false) {
+            if ($image instanceof UploadedFile) {
                 $validator->addRules([
                                          'image' => 'image',
                                      ]);

@@ -14,7 +14,7 @@ class SelectElement extends BaseElement {
     });
 
     if (this.props.allowNull) {
-      options.push(<option key="0" value="">No value</option>);
+      options.push(<option key="0" value={''}>No value</option>);
     }
 
     return <div className="field">

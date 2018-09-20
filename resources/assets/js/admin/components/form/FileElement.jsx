@@ -6,6 +6,8 @@ class FileElement extends BaseElement {
   render() {
     const error = this.props.error ? 'is-danger' : '';
 
+    // const name = Object.hasOwnProperty(this.props.value.name) ? this.props.value.name : false;
+
     return <div className="field">
       <div className={"file is-fullwidth has-name " + error}>
         <label className="file-label" htmlFor={this.props.name}>
@@ -20,7 +22,7 @@ class FileElement extends BaseElement {
               </span>
               <span className="file-label">{this.props.label}</span>
           </span>
-          <span className="file-name">{this.props.value.name || this.props.fileName}</span>
+          <span className="file-name">{this.props.fileName}</span>
         </label>
       </div>
 

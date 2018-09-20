@@ -16,11 +16,13 @@ class BlogArticleResource extends JsonResource
     {
         $array = parent::toArray($request);
 
-        $tags = '';
-        foreach ($array['tags'] as $tag) {
-            $tags .= $tag['tag'].',';
+        if (isset($array['tags'])){
+            $tags = '';
+            foreach ($array['tags'] as $tag) {
+                $tags .= $tag['tag'].',';
+            }
+            $array['tags'] = trim($tags, ',');
         }
-        $array['tags'] = trim($tags, ',');
 
         return $array;
     }

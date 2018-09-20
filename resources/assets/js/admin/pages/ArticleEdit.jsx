@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Loading from "../components/Loading";
 import ArticleEditor from "../components/ArticleEditor";
 
-class ArticleEdit extends Component {
+export default class ArticleEdit extends Component {
   constructor(props) {
     super(props);
 
@@ -30,5 +30,3 @@ class ArticleEdit extends Component {
     return <ArticleEditor editing={true} article={this.state.article} />
   }
 }
-
-export default ArticleEdit;
