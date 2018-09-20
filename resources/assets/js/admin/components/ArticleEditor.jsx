@@ -74,8 +74,6 @@ export default class ArticleEditor extends Component {
         const result = this.props.editing ? modifyArticle(this.state.article.id, data) : createArticle(data);
 
         result.then(r => {
-            console.log(r);
-
             this.setState({
                 processing: false,
                 errors: r.errors

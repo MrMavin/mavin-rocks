@@ -18,7 +18,7 @@ export async function getArticles() {
     await axios.get('/admin/articles')
         .then(r => {
             articles = r.data.data;
-        });
+        }).catch(e => console.log(e.response));
 
     return articles;
 }
@@ -29,7 +29,7 @@ export async function getArticle(articleId) {
     await axios.get(`/admin/article/${articleId}`)
         .then(r => {
             article = r.data.data
-        });
+        }).catch(e => console.log(e.response));
 
     return article;
 }
@@ -65,7 +65,8 @@ export async function manageArticle(path, data) {
 }
 
 export async function deleteArticle(articleId) {
-    await axios.post(`/admin/article/${articleId}/delete`, []);
+    await axios.post(`/admin/article/${articleId}/delete`, [])
+        .catch(e => console.log(e.response));
 
     return true;
 }
@@ -76,7 +77,7 @@ export async function getCategories() {
     await axios.get('/admin/categories')
         .then(r => {
             categories = r.data.data
-        });
+        }).catch(e => console.log(e.response));
 
     return categories;
 }
