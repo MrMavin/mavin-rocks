@@ -9,66 +9,66 @@ use Telegram\Bot\Objects\Update;
 
 class Telegram extends Controller
 {
-	/** @var Api $telegram */
-	protected $telegram;
+    /** @var Api $telegram */
+    protected $telegram;
 
-	public function __construct()
-	{
-		$this->telegram = app('telegram');
-	}
+    public function __construct()
+    {
+        $this->telegram = app('telegram');
+    }
 
-	/**
-	 * Process WebHook request
-	 *
-	 * @param $token
-	 */
-	public function postWebHook($token)
-	{
-		// Validate request token with app generate unique token
-		if ($token !== getTelegramToken()) {
-			// TODO bad token exception / logging
-			return;
-		}
+    /**
+     * Process WebHook request
+     *
+     * @param $token
+     */
+    public function postWebHook($token)
+    {
+        // Validate request token with app generate unique token
+        if ($token !== getTelegramToken()) {
+            // TODO bad token exception / logging
+            return;
+        }
 
-		$this->telegram->commandsHandler(TRUE);
+        $this->telegram->commandsHandler(true);
 
-		/** @var Update $update */
-		$update = \Telegram::getWebhookUpdates();
+        /** @var Update $update */
+        $update = \Telegram::getWebhookUpdates();
 
-		$message = $update->getMessage();
-		$chat = $message->getChat();
+        $message = $update->getMessage();
+        $chat = $message->getChat();
 
-		$chatId = $chat->getId();
-		$text = $message->getText();
+        $chatId = $chat->getId();
+        $text = $message->getText();
 
-		if (starts_with($text, '/')) { // Command, do not process
-			return;
-		}
+        if (starts_with($text, '/')) { // Command, do not process
+            return;
+        }
 
-		if (!filter_var($text, FILTER_VALIDATE_EMAIL)) {
-			$this->telegram->sendMessage([
-				'chat_id' => $chatId,
-				'text' => 'Please provide a valid email.'
-			]);
+        if (! filter_var($text, FILTER_VALIDATE_EMAIL)) {
+            $this->telegram->sendMessage([
+                                             'chat_id' => $chatId,
+                                             'text'    => 'Please provide a valid email.',
+                                         ]);
 
-			return;
-		}
+            return;
+        }
 
-		$user = User::whereEmail($text)->first();
+        $user = User::whereEmail($text)->first();
 
-		if (!$user) {
-			$this->telegram->sendMessage([
-				'chat_id' => $chatId,
-				'text' => 'Your account is not eligible to receive status updates.'
-			]);
-		}
+        if (! $user) {
+            $this->telegram->sendMessage([
+                                             'chat_id' => $chatId,
+                                             'text'    => 'Your account is not eligible to receive status updates.',
+                                         ]);
+        }
 
-		$user->telegram_chat_id = $chatId;
-		$user->save();
+        $user->telegram_chat_id = $chatId;
+        $user->save();
 
-		$this->telegram->sendMessage([
-			'chat_id' => $chatId,
-			'text' => 'You will now receive status updates from the app.'
-		]);
-	}
+        $this->telegram->sendMessage([
+                                         'chat_id' => $chatId,
+                                         'text'    => 'You will now receive status updates from the app.',
+                                     ]);
+    }
 }

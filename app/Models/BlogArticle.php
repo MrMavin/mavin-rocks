@@ -6,58 +6,55 @@ use Illuminate\Database\Eloquent\Model;
 
 class BlogArticle extends Model
 {
-	protected $table = 'blog_articles';
-	protected $fillable = ['category_id', 'title', 'slug', 'excerpt', 'content', 'published'];
-	protected $with = ['tags', 'category'];
-	protected $casts = ['created_at' => 'date:M j, Y'];
-	protected $appends = ['link'];
+    protected $table = 'blog_articles';
 
-	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-	 */
-	public function category()
-	{
-		return $this->belongsTo(BlogCategory::class, 'category_id', 'id');
-	}
+    protected $fillable = [
+        'category_id',
+        'title',
+        'slug',
+        'excerpt',
+        'content',
+        'published',
+    ];
 
-	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
-	 */
-	public function tags()
-	{
-		return $this->belongsToMany(BlogTag::class);
-	}
+    protected $with = [
+        'tags',
+        'category',
+    ];
 
-	/**
-	 * @return string
-	 */
-	public function getCreatedAttribute()
-	{
-		return $this->created_at->diffForHumans();
-	}
+    protected $casts = ['created_at' => 'date:M j, Y'];
 
-	public function getLinkAttribute()
-	{
-		return $this->attributes['id'] . '-' . $this->attributes['slug'];
-	}
+    protected $appends = [
+        'link',
+        'created',
+    ];
 
-	/**
-	 * Transform the Article object in a formatted array
-	 * that could be flashed in the session and loaded
-	 * by the form components
-	 *
-	 * @return array
-	 */
-	public function toFormattedArray()
-	{
-		$data = $this->toArray();
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category()
+    {
+        return $this->belongsTo(BlogCategory::class, 'category_id', 'id');
+    }
 
-		$tags = '';
-		foreach ($data['tags'] as $tag) {
-			$tags .= $tag['tag'] . ',';
-		}
-		$data['tags'] = trim($tags, ',');
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
+     */
+    public function tags()
+    {
+        return $this->belongsToMany(BlogTag::class);
+    }
 
-		return $data;
-	}
+    /**
+     * @return string
+     */
+    public function getCreatedAttribute()
+    {
+        return $this->created_at->diffForHumans();
+    }
+
+    public function getLinkAttribute()
+    {
+        return $this->attributes['id'].'-'.$this->attributes['slug'];
+    }
 }

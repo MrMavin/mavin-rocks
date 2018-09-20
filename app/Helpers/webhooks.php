@@ -7,10 +7,9 @@
  */
 function notifyAdmins($message)
 {
-	$users = \App\Models\User::all();
+    $users = \App\Models\User::all();
 
-	foreach ($users as $user)
-	{
-		$user->sendTelegramMessage($message);
-	}
+    foreach ($users as $user) {
+        $user->sendTelegramMessage($message);
+    }
 }

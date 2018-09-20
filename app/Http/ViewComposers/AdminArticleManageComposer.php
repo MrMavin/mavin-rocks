@@ -7,20 +7,18 @@ use Illuminate\View\View;
 
 class AdminArticleManageComposer
 {
-	protected $categories;
+    protected $categories;
 
-	public function __construct()
-	{
-		$this->categories = BlogCategory::orderBy('position')
-			->get()
-			->toArray();
-	}
+    public function __construct()
+    {
+        $this->categories = BlogCategory::orderBy('position')->get()->toArray();
+    }
 
-	/**
-	 * @param View $view
-	 */
-	public function compose(View $view)
-	{
-		$view->with('categories', $this->categories);
-	}
+    /**
+     * @param View $view
+     */
+    public function compose(View $view)
+    {
+        $view->with('categories', $this->categories);
+    }
 }

@@ -14,9 +14,10 @@ const mix = require('laravel-mix');
 mix.disableNotifications();
 
 mix.js('resources/assets/js/app.js', 'public/js')
-  .js('resources/assets/js/admin/admin.js', 'public/js/admin')
   .sass('resources/assets/sass/app.scss', 'public/css', { outputStyle: 'compressed' })
   .sass('resources/assets/sass/admin/admin.scss', 'public/css/admin', { outputStyle: 'compressed' });
+
+mix.react('resources/assets/js/admin/Admin.jsx', 'public/js/admin');
 
 mix.copy('resources/assets/images/favicon.ico', 'public/favicon.ico');
 mix.copy('resources/assets/images/favicon-16x16.png', 'public/favicon-16x16.png');

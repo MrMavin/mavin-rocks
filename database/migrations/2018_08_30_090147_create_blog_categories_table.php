@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateBlogCategoriesTable extends Migration
 {
@@ -20,15 +19,9 @@ class CreateBlogCategoriesTable extends Migration
         });
 
         \Schema::table('blog_articles', function (Blueprint $table) {
-	        $table->unsignedInteger('category_id')
-		        ->nullable()
-		        ->after('updated_at');
+            $table->unsignedInteger('category_id')->nullable()->after('updated_at');
 
-	        $table->foreign('category_id')
-		        ->references('id')
-		        ->on('blog_categories')
-		        ->onUpdate('cascade')
-		        ->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('blog_categories')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -39,10 +32,10 @@ class CreateBlogCategoriesTable extends Migration
      */
     public function down()
     {
-	    \Schema::table('blog_articles', function (Blueprint $table) {
-		    $table->dropForeign('blog_articles_category_id_foreign');
-		    $table->dropColumn('category_id');
-	    });
+        \Schema::table('blog_articles', function (Blueprint $table) {
+            $table->dropForeign('blog_articles_category_id_foreign');
+            $table->dropColumn('category_id');
+        });
 
         \Schema::dropIfExists('blog_categories');
     }

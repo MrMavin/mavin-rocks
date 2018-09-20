@@ -8,17 +8,17 @@ use Illuminate\Database\Seeder;
 
 class BlogTablesSeeder extends Seeder
 {
-	/**
-	 * Run the database seeds.
-	 *
-	 * @return void
-	 */
-	public function run()
-	{
-		factory(BlogCategory::class, 6)->create();
-		factory(BlogTag::class, 12)->create();
-		factory(BlogArticle::class, 25)->create();
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        factory(BlogCategory::class, 6)->create();
+        factory(BlogTag::class, 12)->create();
+        factory(BlogArticle::class, 25)->create();
 
-		BlogSidebarComposer::clearSidebarCache();
-	}
+        BlogSidebarComposer::clearSidebarCache();
+    }
 }
