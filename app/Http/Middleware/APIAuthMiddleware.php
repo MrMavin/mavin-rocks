@@ -18,8 +18,12 @@ class APIAuthMiddleware
         $apiKey = $request->header('Authorization');
         $user = \Auth::user();
 
-        if (!$user || ($user->getApiKey() !== $apiKey)){
-            return abort(401);
+        if (!$user){
+            return abort(401, "User not authenticated");
+        }
+
+        if ($user->getApiKey() !== $apiKey){
+            return abort(401, "API key is wrong");
         }
 
         return $next($request);
