@@ -79,7 +79,7 @@ export default class ArticleEditor extends Component {
                 errors: r.errors
             });
 
-            if (!this.props.editing && r.success){
+            if (!this.props.editing && r.data.success){
                 const articleId = r.data.article;
 
                 this.setState({
@@ -103,7 +103,7 @@ export default class ArticleEditor extends Component {
             error={this.state.errors.slug}
             onChange={this.handleUpdate}/>;
 
-        const reset_dates = <CheckBoxElement label={"Reset creatinullon date"}
+        const reset_dates = <CheckBoxElement label={"Reset creation date"}
                                              name={"reset_dates"}
                                              value={1}
                                              onChange={this.handleUpdate}/>;
@@ -112,10 +112,6 @@ export default class ArticleEditor extends Component {
                                               name={"delete_image"}
                                               value={1}
                                               onChange={this.handleUpdate}/>;
-
-        /*
-          Image (Image)
-           */
 
         return <Form onSubmit={this.handleSubmit}>
             <Trumbowyg onChange={this.handleUpdate}/>
