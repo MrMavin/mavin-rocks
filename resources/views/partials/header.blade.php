@@ -1,11 +1,12 @@
-<nav id="navigation" class="navbar" role="navigation" aria-label="main navigation">
+<nav id="navigation" class="navbar closed" role="navigation" aria-label="main navigation">
     <div class="container">
         <div class="navbar-brand">
             <a class="navbar-item logo" href="{{ route('page.home') }}">
                 @include('partials.logo')
             </a>
             <a role="button" class="navbar-burger">
-                <i class="fa-fw fas fa-2x fa-bars"></i>
+                <i class="fa-fw fas fa-2x fa-bars show-open"></i>
+                <i class="fa-fw fas fa-2x fa-times show-close"></i>
             </a>
         </div>
         <div class="navbar-menu">

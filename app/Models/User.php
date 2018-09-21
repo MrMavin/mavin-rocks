@@ -22,20 +22,14 @@ class User extends Authenticatable
         return $this->hasMany(BlogArticle::class);
     }
 
-    public function setApiKey()
-    {
-        $apiKey = sha1(str_random(32) . microtime());
-
-        \Cache::put($this->getApiKeyCacheKey(), $apiKey, 60 * 24 * 30);
-    }
-
     public function getApiKey()
     {
-        $key = \Cache::get($this->getApiKeyCacheKey(), null);
+        $cacheKey = md5($this->attributes['id'] . $this->attributes['email']);
+        $key = \Cache::get($cacheKey, null);
 
         if ($key == null){
-            $this->setApiKey();
-            return $this->getApiKey();
+            $key = sha1(str_random(32) . microtime());
+            \Cache::put($cacheKey, $key, 60 * 24 * 30);
         }
 
         return $key;
@@ -58,9 +52,5 @@ class User extends Authenticatable
                                           'chat_id' => $this->telegram_chat_id,
                                           'text'    => $message,
                                       ]);
-    }
-
-    private function getApiKeyCacheKey() {
-        return md5($this->attributes['id'] . $this->attributes['email']);
     }
 }

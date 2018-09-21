@@ -26,6 +26,9 @@ class BlogController extends Controller
      */
     public function getArticle(BlogArticle $article)
     {
+        if (!$article->published)
+            abort(404);
+
         return view('blog.article', ['article' => $article]);
     }
 
