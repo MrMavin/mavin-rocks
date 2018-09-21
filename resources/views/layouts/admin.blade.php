@@ -1,3 +1,4 @@
+@section('title', 'Admin')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +11,7 @@
 
     @include('partials.head')
 </head>
-<body class="@yield('page')">
+<body>
 
 <div id="root" data-api-key="<?=\Auth::user()->getApiKey()?>"></div>
 
@@ -23,7 +24,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.10.0/plugins/pasteembed/trumbowyg.pasteembed.min.js" integrity="sha256-FOfK6nVdwHGcPxEgyjsLPabFl/NkZoInD6wGR7l3O9Q=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.10.0/plugins/preformatted/trumbowyg.preformatted.min.js" integrity="sha256-4INuueXnOHpyb0f+9/jUlenk9eUK84m7CTXQQrTrmOM=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.10.0/plugins/upload/trumbowyg.upload.min.js" integrity="sha256-cfciNQJ5K+8B8vXmEbN3Q42fqtuJHPiExuAu94EJyy4=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.6/jquery.tagsinput.min.js" integrity="sha256-IkytFcY/Z/rLvRE9rYyZvybaitAWr1y2jS/+eyxXky8=" crossorigin="anonymous"></script>
 <script src="{{ asset('js/admin/Admin.js') }}"></script>
 @stack('scripts')
 </body>
