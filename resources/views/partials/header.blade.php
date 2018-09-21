@@ -5,7 +5,8 @@
                 @include('partials.logo')
             </a>
             <a role="button" class="navbar-burger">
-                <i class="fa-fw fas fa-2x fa-bars"></i>
+                <i class="fa-fw fas fa-2x fa-bars show-open"></i>
+                <i class="fa-fw fas fa-2x fa-times show-close"></i>
             </a>
         </div>
         <div class="navbar-menu">

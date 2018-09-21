@@ -73,18 +73,39 @@
       }
     }
 
+    .show-close, .show-open{
+      display: none;
+    }
+
+    &.closed{
+      .show-open{
+        display: block;
+      }
+    }
+
     &.closing{
+      .show-open{
+        display: block;
+      }
+
       .navbar-menu{
         animation-name: close;
         animation-duration: 0.3s;
         display: block;
         height: 100vh;
+        .navbar-item{
+          display: none;
+        }
       }
     }
 
     &.open{
       position: fixed;
       width: 100%;
+
+      .show-close{
+        display: block;
+      }
 
       .navbar-menu{
         animation-name: open;
@@ -93,18 +114,6 @@
         height: 100vh;
         display: block;
       }
-    }
-
-    .navbar-menu {
-
-      &.closed{
-
-      }
-
-      &.open{
-      }
-
-
     }
   }
 }
