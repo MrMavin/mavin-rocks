@@ -52,16 +52,59 @@
 }
 
 @include touch {
+  @keyframes open {
+    from {height: 0}
+    to {height: 100vh}
+  }
+
+  @keyframes close {
+    from {height: 100vh}
+    to {height: 0}
+  }
+
   #navigation {
-    .navbar-menu {
+    .navbar-menu{
+      position: fixed;
+      width: 100%;
+
       a.navbar-item {
         text-align: center;
         padding: 1.5rem 2rem;
       }
     }
 
-    .is-visible-mobile {
-      display: block;
+    &.closing{
+      .navbar-menu{
+        animation-name: close;
+        animation-duration: 0.3s;
+        display: block;
+        height: 100vh;
+      }
+    }
+
+    &.open{
+      position: fixed;
+      width: 100%;
+
+      .navbar-menu{
+        animation-name: open;
+        animation-duration: 0.3s;
+
+        height: 100vh;
+        display: block;
+      }
+    }
+
+    .navbar-menu {
+
+      &.closed{
+
+      }
+
+      &.open{
+      }
+
+
     }
   }
 }
