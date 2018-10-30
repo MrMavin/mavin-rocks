@@ -1,3 +1,7 @@
+/*
+ * This is the ArticleEditor component that I'm using in https://www.mavin.rocks/ admin panel
+ */
+
 import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom'
 import TextElement from "./form/TextElement";
@@ -17,19 +21,20 @@ export default class ArticleEditor extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
 
         this.state = {
-            categories: [],
-            article: this.props.article || {
+            categories: [], // available categories are loaded by API
+            article: this.props.article || { // current article or a new one with some place holders
                 'category_id': '',
                 'title': '',
                 'tags': ''
             },
             errors: {},
-            redirect: false,
-            processing: false
+            redirect: false, // react-router redirect if needed
+            processing: false // processing flag to avoid multiple API requests
         };
     }
 
     componentDidMount() {
+        // after mounting let's load the categories
         getCategories().then(categories => {
             this.setState({
                 categories: categories
@@ -37,6 +42,11 @@ export default class ArticleEditor extends Component {
         });
     }
 
+    /**
+     * Method called after every input modification to update our article state
+     *
+     * @param e
+     */
     handleUpdate(e) {
         const target = e.target;
         const name = target.name;
@@ -58,13 +68,19 @@ export default class ArticleEditor extends Component {
         });
     }
 
+    /**
+     * Submit handler to create or edit an article
+     *
+     * @param event
+     */
     handleSubmit(event) {
         event.preventDefault();
 
         this.setState({
-            processing: true
+            processing: true // we are now preparing a request
         });
 
+        // in order to send a multipart/form-data request with Axios I have to build a FormData object
         let data = new FormData();
 
         for (const [key, value] of Object.entries(this.state.article)) {
@@ -79,7 +95,8 @@ export default class ArticleEditor extends Component {
                 errors: r.errors
             });
 
-            if (!this.props.editing && r.data.success){
+            // if we've successfully created a new article, switch to editing mode
+            if (!this.props.editing && r.data.success) {
                 const articleId = r.data.article;
 
                 this.setState({
@@ -94,6 +111,9 @@ export default class ArticleEditor extends Component {
             return <Redirect to={this.state.redirect}/>;
         }
 
+        // ---
+        // these components are available only in editing mode
+
         const slug = <TextElement
             type={"text"}
             label={"Slug"}
@@ -103,15 +123,19 @@ export default class ArticleEditor extends Component {
             error={this.state.errors.slug}
             onChange={this.handleUpdate}/>;
 
+        // useful when writing drafts
         const reset_dates = <CheckBoxElement label={"Reset creation date"}
                                              name={"reset_dates"}
                                              value={1}
                                              onChange={this.handleUpdate}/>;
 
+        // useful when I don't like the image anymore
         const delete_image = <CheckBoxElement label={"Delete image"}
                                               name={"delete_image"}
                                               value={1}
                                               onChange={this.handleUpdate}/>;
+
+        // ---
 
         return <Form onSubmit={this.handleSubmit}>
             <Trumbowyg onChange={this.handleUpdate}/>
